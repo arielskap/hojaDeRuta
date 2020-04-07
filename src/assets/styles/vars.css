@@ -1,0 +1,65 @@
+:root {
+    --color-menu-hr: #3380cc;
+    --color-title-hr: #000b70;
+    --color-text-hr: #1a1a7a;
+}
+
+.bg-black-transparent {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.text-border-black {
+    text-shadow: 2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000, 1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
+}
+
+.text-menu-hr {
+    color: var(--color-menu-hr);
+}
+
+.text-title-hr {
+    color: var(--color-title-hr);
+}
+
+.text-hr {
+    color: var(--color-text-hr);
+}
+
+.border-menu-hr {
+    border-color: var(--color-menu-hr);
+}
+
+.border-title-hr {
+    border-color: var(--color-title-hr);
+}
+
+.border-hr {
+    border-color: var(--color-text-hr);
+}
+
+.grid_parent {
+    border-bottom-color: var(--color-title-hr);
+    border-left-color: var(--color-title-hr);
+
+    & div {
+        border-top-color: var(--color-text-hr);
+        border-right-color: var(--color-text-hr);
+        border-top-width: 1px;
+        border-right-width: 1px;
+    }
+}
+
+.grid-cols-14 {
+    grid-template-columns: repeat(14, minmax(0, 1fr));
+}
+
+.grid-cols-16 {
+    grid-template-columns: repeat(16, minmax(0, 1fr));
+}
+
+.col-span-14 {
+    grid-column: span 14 / span 14;
+}
+
+.col-span-16 {
+    grid-column: span 16 / span 16;
+}

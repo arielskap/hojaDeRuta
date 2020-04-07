@@ -1,0 +1,44 @@
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+input[type=text],
+input[type=number],
+input[type=date],
+select {
+  @apply shadow;
+  @apply appearance-none;
+  @apply border;
+  @apply rounded;
+  @apply w-full;
+  @apply py-2;
+  @apply px-3;
+  @apply text-gray-700;
+  @apply leading-tight;
+  @apply bg-gray-200;
+}
+
+input[type=text]:focus {
+  @apply outline-none;
+  @apply shadow-outline;
+  @apply bg-white;
+}
+
+label.inputTextNumber {
+  @apply flex;
+  @apply flex-col;
+  @apply text-xs;
+  @apply font-bold;
+}
+
+label.inputCheckbox {
+  @apply flex;
+  @apply flex-col;
+  @apply justify-center;
+  @apply items-center;
+  @apply text-xs;
+  @apply text-center;
+  @apply font-bold;
+}
