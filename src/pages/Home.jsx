@@ -1,9 +1,9 @@
 import React from 'react';
 import { Switch, Route, useRouteMatch } from 'react-router-dom';
 import LinkMenu from '../components/LinkMenu';
-import HojaRuta from './HojaRuta';
 import HeaderHr from '../components/HeaderHr';
 import FooterHr from '../components/FooterHr';
+import BodyBobinas from './BodyBobinas';
 
 const Home = () => {
   const { path } = useRouteMatch();
@@ -30,7 +30,7 @@ const Home = () => {
         <Route path={`${path}/:nameHr`}>
           <div className='mx-4'>
             <HeaderHr />
-            <HojaRuta />
+            <BodyBobinas />
             <FooterHr />
           </div>
         </Route>

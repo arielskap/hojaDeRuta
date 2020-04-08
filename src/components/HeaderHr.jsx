@@ -10,7 +10,7 @@ const HeaderHr = () => {
         <h2 className='text-center text-xl font-bold'>{nameHr.toLocaleUpperCase()}</h2>
         <label className='mt-2 flex items-center justify-center' htmlFor='seguridad'>
           <input className='input_checkbox_square' type='checkbox' name='seguridad' id='seguridad' required />
-          <p className='ml-1'>SEGURIDAD</p>
+          <p className='ml-1 font-bold'>SEGURIDAD</p>
         </label>
       </div>
       <div className='col-span-6 p-2'>

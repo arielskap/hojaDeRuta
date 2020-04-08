@@ -7,29 +7,39 @@
 input[type=text],
 input[type=number],
 input[type=date],
-select {
+select,
+textarea {
   @apply shadow;
   @apply appearance-none;
   @apply border;
   @apply rounded;
   @apply w-full;
-  @apply py-2;
-  @apply px-3;
+  @apply py-1;
+  @apply px-2;
   @apply text-gray-700;
   @apply leading-tight;
-  @apply bg-gray-200;
+  @apply bg-gray-400;
 }
 
-input[type=text]:focus {
+input[type=text]:focus,
+input[type=number]:focus,
+input[type=date]:focus,
+select:focus,
+textarea:focus {
   @apply outline-none;
   @apply shadow-outline;
   @apply bg-white;
 }
 
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 label.inputTextNumber {
   @apply flex;
   @apply flex-col;
-  @apply text-xs;
+  font-size: .625rem;
   @apply font-bold;
 }
 
@@ -38,7 +48,7 @@ label.inputCheckbox {
   @apply flex-col;
   @apply justify-center;
   @apply items-center;
-  @apply text-xs;
+  font-size: .625rem;
   @apply text-center;
   @apply font-bold;
 }
