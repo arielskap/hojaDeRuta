@@ -1,11 +1,13 @@
-.boxes{
-    border-top-width: 1px;
+.boxes {
+  border-top-width: 1px;
+  border-color: var(--color-title-hr);
+
+  & .box {
+    border-left-width: 1px;
     border-color: var(--color-title-hr);
-    & .box {
-        border-left-width: 1px;
-        border-color: var(--color-title-hr);
-    }
-    &:last-child {
-        border-right-width: 1px;
-    }
+  }
+
+  &:last-child {
+    border-right-width: 1px;
+  }
 }

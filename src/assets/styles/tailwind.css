@@ -1,7 +1,5 @@
 @tailwind base;
-
 @tailwind components;
-
 @tailwind utilities;
 
 input[type=text],
@@ -19,6 +17,7 @@ textarea {
   @apply text-gray-700;
   @apply leading-tight;
   @apply bg-gray-400;
+  @apply resize-none;
 }
 
 input[type=text]:focus,
@@ -39,7 +38,9 @@ input::-webkit-inner-spin-button {
 label.inputTextNumber {
   @apply flex;
   @apply flex-col;
-  font-size: .625rem;
+
+  font-size: 0.625rem;
+
   @apply font-bold;
 }
 
@@ -48,7 +49,9 @@ label.inputCheckbox {
   @apply flex-col;
   @apply justify-center;
   @apply items-center;
-  font-size: .625rem;
+
+  font-size: 0.625rem;
+
   @apply text-center;
   @apply font-bold;
 }

@@ -3,7 +3,7 @@ import { Switch, Route, useRouteMatch } from 'react-router-dom';
 import LinkMenu from '../components/LinkMenu';
 import HeaderHr from '../components/HeaderHr';
 import FooterHr from '../components/FooterHr';
-import BodyBobinas from './BodyBobinas';
+import BodyHr from './BodyHr';
 
 const Home = () => {
   const { path } = useRouteMatch();
@@ -30,7 +30,7 @@ const Home = () => {
         <Route path={`${path}/:nameHr`}>
           <div className='mx-4'>
             <HeaderHr />
-            <BodyBobinas />
+            <BodyHr />
             <FooterHr />
           </div>
         </Route>

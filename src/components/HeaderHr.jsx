@@ -7,7 +7,7 @@ const HeaderHr = () => {
   return (
     <div className='grid_parent grid grid-cols-16 border-2 border-title-hr rounded mb-2'>
       <div className='row-span-2 col-span-2'>
-        <h2 className='text-center text-xl font-bold'>{nameHr.toLocaleUpperCase()}</h2>
+        <h2 className='text-center text-xl font-bold bg-gray-200 rounded p-1'>{nameHr.toLocaleUpperCase()}</h2>
         <label className='mt-2 flex items-center justify-center' htmlFor='seguridad'>
           <input className='input_checkbox_square' type='checkbox' name='seguridad' id='seguridad' required />
           <p className='ml-1 font-bold'>SEGURIDAD</p>
