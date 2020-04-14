@@ -10,13 +10,13 @@ const BodyContinuos = () => {
         <ColoresSelect />
       </div>
       <div className='grid grid-cols-12 col-span-12 border-t-2 border-title-hr text-xs'>
-        <div className='col-span-10'>
-          <label className='py-1 flex justify-center items-center bg-gray-600 rounded mt-2 font-bold' htmlFor=''>
+        <div className='col-span-10 border-r-2 border-title-hr'>
+          <label className='py-1 flex justify-center items-center bg-gray-600 rounded mt-2 mx-1 font-bold' htmlFor=''>
             <input className='mr-1' type='checkbox' name='' id='' />
             LINEA FACIL
           </label>
           <div className='grid grid-cols-12 my-2'>
-            <div className='col-span-5 flex border-r-2 border-title-hr'>
+            <div className='col-span-5 flex border-r border-title-hr px-2'>
               <div>
                 <label className='flex' htmlFor=''>
                   <input className='mr-1' type='checkbox' name='' id='' />
@@ -50,11 +50,11 @@ const BodyContinuos = () => {
                 OTRO
               </label>
             </div>
-            <div className='col-span-3 flex border-r-2 border-title-hr'>
-              <div>
+            <div className='col-span-3 flex border-r border-title-hr px-2'>
+              <div className='flex flex-col justify-between pr-4'>
                 <label className='flex' htmlFor=''>
                   <input className='mr-1' type='checkbox' name='' id='' />
-                  <img src={null} alt='Facil Mail' />
+                  <img src={null} alt='Facil Card' />
                 </label>
                 <label htmlFor=''>
                   PARCHE APTO PARA
@@ -76,8 +76,22 @@ const BodyContinuos = () => {
                 </label>
               </div>
             </div>
-            <div className='col-span-2' />
-            <div className='col-span-2' />
+            <div className='col-span-2 border-r border-title-hr px-2'>
+              <label className='flex' htmlFor=''>
+                <input className='mr-1' type='checkbox' name='' id='' />
+                <img src={null} alt='Facil Card' />
+              </label>
+            </div>
+            <div className='col-span-2 px-2'>
+              <label className='flex' htmlFor=''>
+                <input className='mr-1' type='checkbox' name='' id='' />
+                <img src={null} alt='Facil Security' />
+              </label>
+              <label htmlFor=''>
+                CANTIDAD DE PARCHES
+                <input type='number' name='' id='' />
+              </label>
+            </div>
           </div>
         </div>
         <div className='col-span-2 px-2 pt-2 pb-5'>

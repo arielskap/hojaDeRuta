@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import BodyBobinas from './BodyBobinas';
 import BodyContinuos from './BodyContinuos';
 import BodyHojas from './BodyHojas';
+import BodyMultiset from './BodyMultiset';
 
 const body = (nameHr) => {
   let retorno;
@@ -13,7 +14,7 @@ const body = (nameHr) => {
   } else if (nameHr === 'hojas') {
     retorno = <BodyHojas />;
   } else if (nameHr === 'multiset') {
-    retorno = <div>{nameHr}</div>;
+    retorno = <BodyMultiset />;
   }
 
   return retorno;
