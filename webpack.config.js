@@ -20,7 +20,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'js/[name].[hash].js',
-    publicPath: 'http://localhost:8080/',
+    publicPath: 'http://www.rchdynamic.com.ar/hr2/dist/',
     chunkFilename: 'js/[id].[chunkhash].js',
   },
   optimization: {
@@ -100,7 +100,7 @@ module.exports = {
     new AddAssetHtmlPlugin({
       filepath: path.resolve(__dirname, 'dist/js/*.dll.js'),
       outputPath: 'js',
-      publicPath: 'http://localhost:8080/',
+      publicPath: 'http://www.rchdynamic.com.ar/hr2/dist/js/',
     }),
     new CleanWebpackPlugin({
       cleanOnceBeforeBuildPatterns: ['**/app.*'],
