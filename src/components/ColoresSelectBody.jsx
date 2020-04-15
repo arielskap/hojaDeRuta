@@ -1,8 +1,18 @@
-import React, { useRef } from 'react';
-import generateBoxes from '../localFunctions';
+import React, { useState } from 'react';
+import ColorBox from './ColorBox';
+import cross from '../assets/static/cross.svg';
+//import minus from '../assets/static/minus.svg';
 
 const ColoresSelectBody = ({ id, hasParte }) => {
-  const boxes = useRef(generateBoxes());
+  const [colorBox, setColorBox] = useState([<ColorBox id={1} key={0} />]);
+  const handleAddColorBox = () => {
+    setColorBox(colorBox.concat(<ColorBox id={colorBox.length + 1} key={colorBox.length} />));
+  };
+
+  /*const handleLessColorBox = () => {
+    setColorBox(colorBox.filter(colorBox.pop()));
+  };*/
+
   return (
     <>
       <div className='col-span-4 grid grid-cols-12'>
@@ -51,13 +61,21 @@ const ColoresSelectBody = ({ id, hasParte }) => {
             <input type='text' />
           </div>
           <div className='col-span-4 p-2 grid grid-cols-5'>
-            <input className='col-span-2' type='number' />
-            <p className='flex items-center justify-center'>x</p>
-            <input className='col-span-2' type='number' />
+            <div className='col-span-2'>
+              <input type='number' />
+            </div>
+            <p className='text-center mt-1 font-bold'>x</p>
+            <div className='col-span-2'>
+              <input className='col-span-2' type='number' />
+            </div>
           </div>
           <div className='col-span-2 p-2 grid grid-cols-2 gap-2'>
-            <input type='text' />
-            <input type='text' />
+            <div>
+              <input type='text' />
+            </div>
+            <div>
+              <input type='text' />
+            </div>
           </div>
           <div className='col-span-1 p-2'>
             <input type='checkbox' />
@@ -84,37 +102,21 @@ const ColoresSelectBody = ({ id, hasParte }) => {
           <h3 className='text-white font-bold text-xs h-full flex items-center justify-center'>COLORES</h3>
         </div>
         <div className='col-span-10 grid grid-cols-10 boxes'>
-          {boxes.current.map((box) => {
-            const { id } = box;
-            return (
-              <div className='box' key={id}>
-                <div className='grid grid-cols-5'>
-                  <div>
-                    <p className='bg-black text-white flex items-center justify-center'>{id}</p>
-                  </div>
-                  <div className='col-span-2'>
-                    <label className='flex items-center justify-center text-xs' htmlFor={`F${id}`}>
-                      <input type='checkbox' name={`F${id}`} id={`F${id}`} />
-                      <p className='ml-1'>F</p>
-                    </label>
-                  </div>
-                  <div className='col-span-2'>
-                    <label className='flex items-center justify-center text-xs' htmlFor={`D${id}`}>
-                      <input type='checkbox' name={`D${id}`} id={`D${id}`} />
-                      <p className='ml-1'>D</p>
-                    </label>
-                  </div>
-                </div>
-                <div className='p-2 text-xs'>
-                  <select>
-                    <option value='1'>NEGRO</option>
-                    <option value='2'>CYAN</option>
-                    <option value='3'>MAGENTA</option>
-                  </select>
-                </div>
+          {colorBox}
+          <div className='flex justify-around'>
+            {/*colorBox.length > 1 && (
+              <div className='flex justify-center items-center'>
+                <button onClick={handleLessColorBox} className='w-8 h-8 p-2 border border-black rounded-full' type='button'>
+                  <img className='object-contain' src={minus} alt='Agregar color' />
+                </button>
               </div>
-            );
-          })}
+            )*/}
+            <div className='flex justify-center items-center'>
+              <button onClick={handleAddColorBox} className='w-8 h-8 p-2 border border-black rounded-full' type='button'>
+                <img className='object-contain transform rotate-45' src={cross} alt='Agregar color' />
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </>

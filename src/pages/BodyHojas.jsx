@@ -1,11 +1,10 @@
 import React from 'react';
 import ColoresSelect from '../components/ColoresSelect';
-import DesgloseCremallera from '../components/DesgloseCremallera';
 import Acondicionamiento from '../components/Acondicionamiento';
 
 const BodyContinuos = () => {
   return (
-    <>
+    <div className='animated fadeIn faster'>
       <div className='grid grid-cols-12 col-gap-2'>
         <ColoresSelect />
       </div>
@@ -102,7 +101,7 @@ const BodyContinuos = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

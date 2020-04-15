@@ -9,6 +9,7 @@ module.exports = {
       'react',
       'react-dom',
       'react-router-dom',
+      '@tippyjs/react',
     ],
   },
   optimization: {

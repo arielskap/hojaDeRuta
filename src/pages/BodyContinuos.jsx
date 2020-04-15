@@ -1,43 +1,23 @@
-import React, { useRef } from 'react';
+import React, { useState } from 'react';
 import ColoresSelect from '../components/ColoresSelect';
 import DesgloseCremallera from '../components/DesgloseCremallera';
 import Acondicionamiento from '../components/Acondicionamiento';
+import cross from '../assets/static/cross.svg';
 
 const BodyContinuos = () => {
-  const colores = useRef([
-    {
-      id: 1,
-    },
-    {
-      id: 2,
-    },
-    {
-      id: 3,
-    },
-    {
-      id: 4,
-    },
-    {
-      id: 5,
-    },
-    {
-      id: 6,
-    },
-    {
-      id: 7,
-    },
-    {
-      id: 8,
-    },
-  ]);
+  const [coloresSelect, setColoresSelect] = useState([<ColoresSelect id={1} hasParte={true} key={0} />]);
+  const handleAddColoresSelect = () => {
+    setColoresSelect(coloresSelect.concat(<ColoresSelect id={coloresSelect.length + 1} hasParte={true} key={coloresSelect.length} />));
+  };
   return (
-    <>
-      {colores.current.map(({ id }) => {
-        return (
-          <ColoresSelect key={id} id={id} hasParte={true} />
-        );
-      })}
-      <div className='grid grid-cols-12 text-xs'>
+    <div className='animated fadeIn faster'>
+      {coloresSelect}
+      <div className='flex justify-center items-center my-2'>
+        <button onClick={handleAddColoresSelect} className='w-8 h-8 p-2 border border-black rounded-full' type='button'>
+          <img className='object-contain transform rotate-45' src={cross} alt='Agregar color' />
+        </button>
+      </div>
+      <div className='grid grid-cols-12 text-xs border-t-2 border-title-hr'>
         <div className='col-span-10 grid grid-cols-12 border-r-2 border-title-hr pb-3'>
           <DesgloseCremallera lado='IZQUIERD' />
           <div className='col-span-4'>
@@ -79,7 +59,7 @@ const BodyContinuos = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

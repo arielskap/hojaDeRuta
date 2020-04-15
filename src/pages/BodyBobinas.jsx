@@ -31,7 +31,7 @@ const BodyBobinas = () => {
     'position': 'al reves',
   }]);
   return (
-    <div>
+    <div className='animated fadeIn faster'>
       <div className='grid grid-cols-12 col-gap-2'>
         <ColoresSelect />
         <div className='grid grid-cols-12 col-span-12 border-t-2 border-title-hr'>
