@@ -56,7 +56,7 @@ const BodyBobinas = () => {
                       <img className='object-contain h-full w-16' src={paper} alt={`paper_${id}`} />
                     </div>
                     <div className='flex justify-center items-center my-3'>
-                      <input className='w-6 h-6' type='checkbox' />
+                      <input className='w-6 h-6' type='radio' name='sentidoRebobinado' defaultChecked={bobinas.current.length === id} />
                     </div>
                   </div>
                 );
@@ -71,11 +71,11 @@ const BodyBobinas = () => {
               <p className='text-center'>LLEVA PLECA DE CORTE</p>
               <div className='grid grid-cols-2'>
                 <label className='flex items-center justify-center' htmlFor='bodyBobinaSi'>
-                  <input type='checkbox' name='bodyBobinaSi' id='bodyBobinaSi' />
+                  <input type='radio' name='bodyBobinaPleca' id='bodyBobinaSi' />
                   SI
                 </label>
                 <label className='flex items-center justify-center' htmlFor='bodyBobinaNo'>
-                  <input type='checkbox' name='bodyBobinaNo' id='bodyBobinaNo' defaultChecked />
+                  <input type='radio' name='bodyBobinaPleca' id='bodyBobinaNo' defaultChecked />
                   NO
                 </label>
               </div>
@@ -92,7 +92,7 @@ const BodyBobinas = () => {
                     <img className='object-contain h-full w-10' src={paper} alt='STREECH' />
                   </div>
                   <label className='flex items-center justify-center' htmlFor='bodyBobinasStreech'>
-                    <input type='checkbox' name='bodyBobinasStreech' id='bodyBobinasStreech' />
+                    <input type='radio' name='bodyBobinasAcondicionamiento' id='bodyBobinasStreech' defaultChecked />
                     <p className='ml-1'>STREECH</p>
                   </label>
                 </div>
@@ -101,7 +101,7 @@ const BodyBobinas = () => {
                     <img className='object-contain h-full w-10' src={paper} alt='CARTÓN' />
                   </div>
                   <label className='flex items-center justify-center' htmlFor='bodyBobinasCarton'>
-                    <input type='checkbox' name='bodyBobinasCarton' id='bodyBobinasCarton' />
+                    <input type='radio' name='bodyBobinasAcondicionamiento' id='bodyBobinasCarton' />
                     <p className='ml-1'>CARTÓN</p>
                   </label>
                 </div>
@@ -110,7 +110,7 @@ const BodyBobinas = () => {
                     <img className='object-contain h-full w-10' src={paper} alt='STREECH EN PALLET' />
                   </div>
                   <label className='flex items-center justify-center' htmlFor='bodyBobinasPallet'>
-                    <input type='checkbox' name='bodyBobinasPallet' id='bodyBobinasPallet' />
+                    <input type='radio' name='bodyBobinasAcondicionamiento' id='bodyBobinasPallet' />
                     <p className='ml-1'>STREECH EN PALLET</p>
                   </label>
                 </div>
@@ -124,7 +124,6 @@ const BodyBobinas = () => {
           </div>
         </div>
       </div>
-      <div />
     </div>
   );
 };

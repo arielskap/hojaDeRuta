@@ -1,21 +1,37 @@
 import React, { useState } from 'react';
 import ColorBox from './ColorBox';
+import Modal from './Modal';
 import cross from '../assets/static/cross.svg';
-//import minus from '../assets/static/minus.svg';
+import minus from '../assets/static/minus.svg';
+import animateCSS from '../funciones';
 
 const ColoresSelectBody = ({ id, hasParte }) => {
-  const [colorBox, setColorBox] = useState([<ColorBox id={1} key={0} />]);
+  const [colorBox, setColorBox] = useState([<ColorBox parte={id} id={1} key={0} />]);
+  const [openModal, setOpenModal] = useState(false);
+
   const handleAddColorBox = () => {
-    setColorBox(colorBox.concat(<ColorBox id={colorBox.length + 1} key={colorBox.length} />));
+    setColorBox(colorBox.concat(<ColorBox parte={id} id={colorBox.length + 1} key={colorBox.length} />));
   };
 
-  /*const handleLessColorBox = () => {
-    setColorBox(colorBox.filter(colorBox.pop()));
-  };*/
+  const closeModal = () => {
+    animateCSS('.Modal', 'fadeOut faster');
+    animateCSS('.Modal__container', 'slideOutUp faster', () => {
+      setOpenModal(false);
+    });
+  };
+
+  const handleLessColorBox = () => {
+    closeModal();
+    animateCSS(`.box${colorBox.length}${id || '1'}`, 'fadeOut faster', () => {
+      const colorBoxLess = colorBox;
+      colorBoxLess.splice(-1, 1);
+      setColorBox([...colorBoxLess]);
+    });
+  };
 
   return (
     <>
-      <div className='col-span-4 grid grid-cols-12'>
+      <div className={`col-span-4 grid grid-cols-12 ColoresSelectBody${id || '1'}`}>
         <div className='col-span-12 grid grid-cols-12 border border-title-hr rounded text-xs text-center'>
           {hasParte && (
             <div>
@@ -31,11 +47,11 @@ const ColoresSelectBody = ({ id, hasParte }) => {
           <div className='col-span-4'>
             <h3 className='font-bold'>MEDIDA</h3>
           </div>
-          <div className='col-span-2 text-xxs'>
-            <h3>PERFORACIONES</h3>
+          <div className='col-span-2'>
+            <h3 className='text-xxs'>PERFORACIONES</h3>
             <div className='grid grid-cols-2'>
-              <h4>PERPEND.</h4>
-              <h4>PARAL:</h4>
+              <h4 className='text-xxs'>PERPEND.</h4>
+              <h4 className='text-xxs'>PARAL:</h4>
             </div>
           </div>
           <div className='col-span-1 text-xxs'>
@@ -104,13 +120,13 @@ const ColoresSelectBody = ({ id, hasParte }) => {
         <div className='col-span-10 grid grid-cols-10 boxes'>
           {colorBox}
           <div className='flex justify-around'>
-            {/*colorBox.length > 1 && (
+            {colorBox.length > 1 && (
               <div className='flex justify-center items-center'>
-                <button onClick={handleLessColorBox} className='w-8 h-8 p-2 border border-black rounded-full' type='button'>
+                <button onClick={() => { setOpenModal(true) ; }} className='w-8 h-8 p-2 border border-black rounded-full' type='button'>
                   <img className='object-contain' src={minus} alt='Agregar color' />
                 </button>
               </div>
-            )*/}
+            )}
             <div className='flex justify-center items-center'>
               <button onClick={handleAddColorBox} className='w-8 h-8 p-2 border border-black rounded-full' type='button'>
                 <img className='object-contain transform rotate-45' src={cross} alt='Agregar color' />
@@ -119,6 +135,15 @@ const ColoresSelectBody = ({ id, hasParte }) => {
           </div>
         </div>
       </div>
+      <Modal isOpen={openModal} onClose={closeModal}>
+        <div className='pt-2 pb-3 w-64'>
+          <h3 className='text-center font-bold text-xl'>¿Eliminar color?</h3>
+          <div className='flex justify-around mt-2'>
+            <button className='bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-1 px-2 border border-blue-500 hover:border-transparent rounded' type='button' onClick={closeModal}>Cancelar</button>
+            <button className='bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-1 px-2 border border-red-500 hover:border-transparent rounded' type='button' onClick={handleLessColorBox}>Aceptar</button>
+          </div>
+        </div>
+      </Modal>
     </>
   );
 };

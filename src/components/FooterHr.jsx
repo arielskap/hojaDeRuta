@@ -10,19 +10,19 @@ const FooterHr = () => {
         <div className='grid grid-cols-12 gap-1 text-xxs'>
           <div className='col-span-3 font-bold text-xs flex items-center justify-center p-2'>
             <h4 className='text-xxs'>NUMERAR</h4>
-            <label className='flex ml-2 text-xxs' htmlFor='numerarSi'>
-              <input type='checkbox' name='numerarSi' id='numerarSi' />
+            <label className='flex justify-center items-center ml-2 text-xxs' htmlFor='numerarSi'>
+              <input className='mr-1' type='radio' name='numerar' id='numerarSi' />
               SI
             </label>
-            <label className='flex ml-1 text-xxs' htmlFor='numerarNo'>
-              <input type='checkbox' name='numerarNo' id='numerarNo' defaultChecked />
+            <label className='flex justify-center items-center ml-2 text-xxs' htmlFor='numerarNo'>
+              <input className='mr-1' type='radio' name='numerar' id='numerarNo' defaultChecked />
               NO
             </label>
           </div>
           <div className='col-span-2 p-2'>
             <label className='inputTextNumber text-xxs' htmlFor='sistemaNumerado'>
               SISTEMA DE NUMERADO
-              <select name='sistemaNumerado' ids='sistemaNumerado'>
+              <select name='sistemaNumerado' id='sistemaNumerado'>
                 <option value='1'>IMPACTO</option>
                 <option value='2'>LASER</option>
                 <option value='3'>INKJET</option>
@@ -39,7 +39,7 @@ const FooterHr = () => {
           <div className='col-span-2 p-2'>
             <label className='inputTextNumber' htmlFor='tintaColor'>
               TINTA/COLOR NUMERADO
-              <select name='tintaColor' ids='tintaColor'>
+              <select name='tintaColor' id='tintaColor'>
                 <option value='1'>NEGRO</option>
                 <option value='2'>ROJO</option>
                 <option value='3'>SANGRANTE</option>
@@ -50,7 +50,7 @@ const FooterHr = () => {
           <div className='col-span-3 p-2'>
             <label className='inputTextNumber' htmlFor='bidimensional'>
               TIPO DE CODIGO DE BARRAS / BIDIMENSIONAL
-              <select name='bidimensional' ids='bidimensional'>
+              <select name='bidimensional' id='bidimensional'>
                 <option value='1'>EAN 13</option>
                 <option value='2'>3 DE 9</option>
                 <option value='3'>2 DE 5</option>
@@ -90,18 +90,18 @@ const FooterHr = () => {
           <div className='col-span-3 font-bold text-xxs p-2'>
             <h4 className='text-center'>LLEVA DIGITO DE CHEQUEO</h4>
             <div className='flex justify-center'>
-              <label className='flex ml-2' htmlFor='numerarSi'>
-                <input type='checkbox' name='numerarSi' id='numerarSi' />
+              <label className='flex ml-2' htmlFor='chequeoSi'>
+                <input type='radio' name='chequeo' id='chequeoSi' />
                 SI
               </label>
-              <label className='flex ml-1' htmlFor='numerarNo'>
-                <input type='checkbox' name='numerarNo' id='numerarNo' defaultChecked />
+              <label className='flex ml-1' htmlFor='chequeoNo'>
+                <input type='radio' name='chequeo' id='chequeoNo' defaultChecked />
                 NO
               </label>
             </div>
           </div>
           <div className='col-span-12 p-2'>
-            <textarea className='resize-none w-full h-full' name='textarea1' id='textarea1' cols='30' rows='3' />
+            <textarea className='resize-none w-full h-full' name='textareaNumeracion' id='textareaNumeracion' cols='30' rows='3' />
           </div>
         </div>
       </div>
@@ -110,7 +110,7 @@ const FooterHr = () => {
           <h3 className='text-center font-bold'>DISEÑO</h3>
         </div>
         <div className='flex-grow p-2'>
-          <textarea className='resize-none w-full h-full' name='textarea1' id='textarea1' cols='30' rows='3' />
+          <textarea className='resize-none w-full h-full' name='textareaDiseño' id='textareaDiseño' cols='30' rows='3' />
         </div>
       </div>
       <div className='flex flex-col border-r-2 border-title-hr'>
@@ -118,7 +118,7 @@ const FooterHr = () => {
           <h3 className='text-center font-bold'>IMPRESIÓN</h3>
         </div>
         <div className='flex-grow p-2'>
-          <textarea className='resize-none w-full h-full' name='textarea1' id='textarea1' cols='30' rows='3' />
+          <textarea className='resize-none w-full h-full' name='textareaImpresion' id='textareaImpresion' cols='30' rows='3' />
         </div>
       </div>
       <div className='flex flex-col'>
@@ -126,7 +126,7 @@ const FooterHr = () => {
           <h3 className='text-center font-bold'>TERMINACIÓN</h3>
         </div>
         <div className='flex-grow p-2'>
-          <textarea className='resize-none w-full h-full' name='textarea1' id='textarea1' cols='30' rows='3' />
+          <textarea className='resize-none w-full h-full' name='textareaTerminacion' id='textareaTerminacion' cols='30' rows='3' />
         </div>
       </div>
     </div>

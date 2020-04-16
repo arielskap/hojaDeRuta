@@ -5,9 +5,10 @@ import BodyContinuos from './BodyContinuos';
 import BodyHojas from './BodyHojas';
 import BodyMultiset from './BodyMultiset';
 
-const body = (nameHr) => {
+const body = (nameHr, setUrl) => {
   let retorno;
   if (nameHr === 'bobinas') {
+    //setUrl('bobina/create');
     retorno = <BodyBobinas />;
   } else if (nameHr === 'continuos') {
     retorno = <BodyContinuos />;
@@ -20,9 +21,9 @@ const body = (nameHr) => {
   return retorno;
 };
 
-const BodyHr = () => {
+const BodyHr = ({ setUrl }) => {
   const { nameHr } = useParams();
-  const bodyTag = useRef(body(nameHr));
+  const bodyTag = useRef(body(nameHr, setUrl));
 
   return bodyTag.current;
 };

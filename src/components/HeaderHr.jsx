@@ -22,31 +22,31 @@ const HeaderHr = () => {
       <div className='col-span-2 grid grid-cols-2 gap-1'>
         <label className='inputCheckbox' htmlFor='sinPba'>
           SIN PBA
-          <input type='checkbox' name='sinPba' id='sinPba' />
+          <input type='radio' name='pba' id='sinPba' />
         </label>
         <label className='inputCheckbox' htmlFor='pbaImpresa'>
           PBA IMPRESA
-          <input type='checkbox' name='pbaImpresa' id='pbaImpresa' defaultChecked />
+          <input type='radio' name='pba' id='pbaImpresa' defaultChecked />
         </label>
       </div>
       <div className='col-span-3 grid grid-cols-3 gap-1'>
         <label className='inputCheckbox' htmlFor='nuevo'>
           NUEVO
-          <input type='checkbox' name='nuevo' id='nuevo' />
+          <input type='radio' name='isHoja' id='nuevo' />
         </label>
         <label className='inputCheckbox' htmlFor='conCambios'>
           CON CAMBIOS
-          <input type='checkbox' name='conCambios' id='conCambios' />
+          <input type='radio' name='isHoja' id='conCambios' />
         </label>
         <label className='inputCheckbox' htmlFor='repetExacta'>
           REPT. EXACTA
-          <input type='checkbox' name='repetExacta' id='repetExacta' defaultChecked />
+          <input type='radio' name='isHoja' id='repetExacta' defaultChecked />
         </label>
       </div>
       <div className='col-span-3 p-2'>
         <label className='inputTextNumber' htmlFor='ordenAnterior'>
           NRO. ORDEN ANTERIOR
-          <input type='number' required />
+          <input type='number' name='ordenAnterior' id='ordenAnterior' required />
         </label>
       </div>
       <div className='col-span-5 p-2 flex'>

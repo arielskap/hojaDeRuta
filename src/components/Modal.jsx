@@ -18,7 +18,7 @@ const Modal = ({ children, isOpen, onClose }) => {
     <div className='Modal animated fadeIn faster z-30'>
       <div className='Modal__container animated slideInDown faster rounded-lg overflow-auto'>
         <button className='Modal__close-button z-10 m-2' type='button' onClick={() => { onClose(); }}>
-          <img className='object-contain h-6 w-6' src={cross} alt='close' />
+          <img className='object-contain h-4 w-4' src={cross} alt='close' />
         </button>
         {children}
       </div>

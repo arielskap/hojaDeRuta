@@ -1,21 +1,11 @@
-import React, { useState } from 'react';
-import ColoresSelect from '../components/ColoresSelect';
+import React from 'react';
 import Acondicionamiento from '../components/Acondicionamiento';
-import cross from '../assets/static/cross.svg';
+import ColoresSelectAddLess from '../components/ColoresSelectAddLess';
 
 const BodyMultiset = () => {
-  const [coloresSelect, setColoresSelect] = useState([<ColoresSelect id={1} hasParte={true} key={0} />]);
-  const handleAddColoresSelect = () => {
-    setColoresSelect(coloresSelect.concat(<ColoresSelect id={coloresSelect.length + 1} hasParte={true} key={coloresSelect.length} />));
-  };
   return (
     <div className='text-xs animated fadeIn faster'>
-      {coloresSelect}
-      <div className='flex justify-center items-center my-2'>
-        <button onClick={handleAddColoresSelect} className='w-8 h-8 p-2 border border-black rounded-full' type='button'>
-          <img className='object-contain transform rotate-45' src={cross} alt='Agregar color' />
-        </button>
-      </div>
+      <ColoresSelectAddLess />
       <div className='grid grid-cols-12 border-t-2 border-title-hr'>
         <div className='col-span-10 grid grid-cols-3'>
           <div className='flex flex-col border-r-2 border-title-hr px-2 py-1'>
