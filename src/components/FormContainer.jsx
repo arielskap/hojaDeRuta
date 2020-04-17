@@ -80,7 +80,7 @@ const FormContainer = () => {
       credentials: 'same-origin',
     };
 
-    fetch('http://www.husaresfacil.com.ar/node_auth_server/login', header)
+    fetch('http://www.dynamicdoc.com.ar/hoja_de_ruta/login', header)
       .then((response) => {
         return response.json();
       })

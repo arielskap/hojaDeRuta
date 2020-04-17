@@ -8,6 +8,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const TersetJSPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const PurgecssPlugin = require('purgecss-webpack-plugin');
+const manifest = require('./modules-manifest.json');
 
 const PATHS = {
   src: path.join(__dirname, 'src'),
@@ -95,7 +96,7 @@ module.exports = {
       keyframes: true,
     }),
     new webpack.DllReferencePlugin({
-      manifest: require('./modules-manifest.json'),
+      manifest,
     }),
     new AddAssetHtmlPlugin({
       filepath: path.resolve(__dirname, 'dist/js/*.dll.js'),
