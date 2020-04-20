@@ -4,6 +4,7 @@ import '../assets/styles/checkbox.css';
 
 const HeaderHr = () => {
   const { nameHr } = useParams();
+  const { lista_empresas } = JSON.parse(localStorage.getItem('user'));
   return (
     <div className='grid_parent grid grid-cols-16 border-2 border-title-hr rounded mb-2'>
       <div className='row-span-2 col-span-2'>
@@ -50,14 +51,17 @@ const HeaderHr = () => {
         </label>
       </div>
       <div className='col-span-5 p-2 flex'>
-        <label className='inputTextNumber' htmlFor='vendidoA'>
-          VENDIDO A
-          <input type='text' name='vendidoA' id='vendidoA' required />
-        </label>
-        <label className='inputTextNumber ml-2' htmlFor='codigoCliente'>
-          CODIGO CLIENTE
-          <input type='number' name='codigoCliente' id='codigoCliente' required />
-        </label>
+        <select name='headerHrCodigoEmpresa' id='headerHrCodigoEmpresa'>
+          {lista_empresas.map((empresa) => {
+            const { id, razonSocial, codigoEmpresa, activo } = empresa;
+            if (!activo) {
+              return null;
+            }
+            return (
+              <option value={codigoEmpresa} key={id}>{`${codigoEmpresa}. ${razonSocial}`}</option>
+            );
+          })}
+        </select>
       </div>
       <div className='col-span-2 p-2'>
         <label className='inputTextNumber' htmlFor='materialEntregado'>

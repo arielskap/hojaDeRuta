@@ -32,7 +32,7 @@ const FormContainer = () => {
     });
   };
 
-  const responseLogin = (response) => {
+  const responseLogin = (response, authorization) => {
     console.log(response);
     document.body.classList.remove('cursor-wait');
     if (!response || response.result === 'error') {
@@ -44,6 +44,7 @@ const FormContainer = () => {
       });
     } else if (response.result === 'success') {
       localStorage.setItem('user', JSON.stringify(response.body));
+      localStorage.setItem('authorization', authorization);
       animateCSS('.Login', 'fadeOut faster', () => {
         history.push('/hr');
       });
@@ -53,6 +54,7 @@ const FormContainer = () => {
   const handleSubmit = (e) => {
     const username = document.querySelector('#username');
     const password = document.querySelector('#password');
+    let authorization;
     e.preventDefault();
     document.body.classList.add('cursor-wait');
     document.querySelector('.button_submit_Form').setAttribute('disabled', '');
@@ -82,13 +84,15 @@ const FormContainer = () => {
 
     fetch('http://www.dynamicdoc.com.ar/hoja_de_ruta/login', header)
       .then((response) => {
+        authorization = response.headers.get('authorization');
+        authorization = 'Bearer '.concat(authorization);
         return response.json();
       })
       .catch((error) => {
         console.log(error);
       })
       .then((response) => {
-        responseLogin(response);
+        responseLogin(response, authorization);
       });
   };
 

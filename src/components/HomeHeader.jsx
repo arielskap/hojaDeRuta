@@ -4,7 +4,8 @@ import imgPerfil from '../assets/static/user.svg';
 import '../assets/styles/homeHeader.css';
 
 const HomeHeader = () => {
-  const { nombre, apellido } = JSON.parse(localStorage.getItem('user'));
+  const { vendedor } = JSON.parse(localStorage.getItem('user'));
+  const { nombre, apellido } = vendedor;
   return (
     <div className='Home__header flex items-center justify-around text-white'>
       <div className='w-24'>

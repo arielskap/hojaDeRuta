@@ -8,6 +8,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const TersetJSPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const PurgecssPlugin = require('purgecss-webpack-plugin');
+const HtmlCriticalWebpackPlugin = require('html-critical-webpack-plugin');
 const manifest = require('./modules-manifest.json');
 
 const PATHS = {
@@ -21,7 +22,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'js/[name].[hash].js',
-    publicPath: 'http://www.rchdynamic.com.ar/hr2/dist/',
+    publicPath: 'http://127.0.0.1:8080/',
     chunkFilename: 'js/[id].[chunkhash].js',
   },
   optimization: {
@@ -45,14 +46,6 @@ module.exports = {
         },
       },
       {
-        test: /\.html$/,
-        use: [
-          {
-            loader: 'html-loader',
-          },
-        ],
-      },
-      {
         test: /\.css$/,
         use: [
           {
@@ -68,7 +61,7 @@ module.exports = {
         ],
       },
       {
-        test: /\.(png|gif|jpg|svg|woff|woff2|eot|ttf|otf)$/,
+        test: /\.(png|gif|jpg|woff|woff2|eot|ttf|otf)$/,
         use: {
           loader: 'url-loader',
           options: {
@@ -77,6 +70,19 @@ module.exports = {
             outputPath: 'assets',
           },
         },
+      },
+      {
+        test: /\.svg$/,
+        loader: 'svg-url-loader',
+        options: {
+          limit: 10 * 1024,
+          noquotes: true,
+        },
+      },
+      {
+        test: /\.(jpg|png|gif|svg)$/,
+        loader: 'image-webpack-loader',
+        enforce: 'pre',
       },
     ],
   },
@@ -101,10 +107,23 @@ module.exports = {
     new AddAssetHtmlPlugin({
       filepath: path.resolve(__dirname, 'dist/js/*.dll.js'),
       outputPath: 'js',
-      publicPath: 'http://www.rchdynamic.com.ar/hr2/dist/js/',
+      publicPath: 'http://127.0.0.1:8080/js',
     }),
     new CleanWebpackPlugin({
       cleanOnceBeforeBuildPatterns: ['**/app.*'],
+    }),
+    new HtmlCriticalWebpackPlugin({
+      base: path.resolve(__dirname, 'dist'),
+      src: 'index.html',
+      dest: 'index.html',
+      inline: true,
+      minify: true,
+      extract: true,
+      width: 375,
+      height: 565,
+      penthouse: {
+        blockJSRequests: false,
+      },
     }),
   ],
 };

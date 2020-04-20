@@ -5,14 +5,18 @@ import 'animate.css/animate.css';
 
 const render = () => {
   ReactDOM.render(
-    <App />, document.getElementById('app'),
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>,
+    document.getElementById('app'),
   );
 };
 
 render();
 
-/*if (module.hot) {
+if (module.hot) {
   module.hot.accept('./containers/App', () => {
+    console.clear();
     render();
   });
-}*/
+}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Switch, Route, useRouteMatch, useHistory } from 'react-router-dom';
 import LinkMenu from '../components/LinkMenu';
 import HeaderHr from '../components/HeaderHr';
@@ -8,12 +8,14 @@ import BodyHr from './BodyHr';
 import HomeHeader from '../components/HomeHeader';
 import SubmitHr from '../components/SubmitHr';
 import animateCSS from '../funciones';
+import Ballons from '../components/Ballons';
 
 const Home = () => {
   const { path } = useRouteMatch();
   const history = useHistory();
   const [url, setUrl] = useState('bobina/create');
   const [openModal, setOpenModal] = useState(false);
+  const [happy, setHappy] = useState((!localStorage.getItem('happy') || localStorage.getItem('happy') === null) && true);
 
   const closeModal = () => {
     animateCSS('.Modal', 'fadeOut faster');
@@ -24,8 +26,25 @@ const Home = () => {
 
   const handleLoginOut = () => {
     closeModal();
+    localStorage.setItem('user', '');
+    localStorage.setItem('authorization', '');
     history.push('/');
   };
+
+  useEffect(() => {
+    let ballonsTime;
+    if (happy) {
+      ballonsTime = setTimeout(() => {
+        animateCSS('#ballon', 'fadeOut faster', () => {
+          setHappy(false);
+        });
+      }, 5000);
+      localStorage.setItem('happy', 'false');
+    }
+    return () => {
+      clearTimeout(ballonsTime);
+    };
+  }, [happy]);
 
   return (
     <div className='flex flex-col min-h-screen min-w-full animated fadeIn faster'>
@@ -66,6 +85,7 @@ const Home = () => {
                   </div>
                 </div>
               </Modal>
+              <Ballons isHappy={happy} />
             </>
           </Route>
           <Route path={`${path}/:nameHr`}>
