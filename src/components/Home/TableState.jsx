@@ -1,13 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import LoaderEllipsis from '../Loaders/LoaderEllipsis';
+import React, { useState, useEffect, useRef } from 'react';
+import LoaderEllipsis from '../loaders/LoaderEllipsis';
 import Td from './Td';
+import ButtonGeneric from '../ButtonGeneric';
+import SearchHr from './SearchHr';
 
 const TableState = () => {
+  const [pagination, setPagination] = useState(0);
   const [bobinas, setBobinas] = useState({
     lista: [],
-    loading: true,
+    loading: false,
     error: '',
   });
+  const isMounted = useRef(true);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -21,14 +25,20 @@ const TableState = () => {
       credentials: 'same-origin',
     };
 
-    fetch('http://www.dynamicdoc.com.ar/hoja_de_ruta/bobina/read/pagination/0', headers)
+    setBobinas({ ...bobinas, loading: true });
+
+    fetch(`http://www.dynamicdoc.com.ar/hoja_de_ruta/bobina/read/pagination/${pagination}`, headers)
       .then((response) => {
-        return response.json();
+        if (isMounted.current) {
+          return response.json();
+        }
       })
       .catch((error) => {
-        console.log(`error: ${error}`);
-        setBobinas({ ...bobinas, loading: false, error });
-        return false;
+        if (isMounted.current) {
+          console.log(`error: ${error}`);
+          setBobinas({ ...bobinas, loading: false, error });
+          return false;
+        }
       })
       .then((response) => {
         if (response) {
@@ -36,44 +46,35 @@ const TableState = () => {
         }
       });
     return () => {
+      isMounted.current = false;
       controller.abort();
     };
-  }, []);
+  }, [pagination]);
 
   return (
     <>
       {bobinas.loading ? (
-        <div className='flex justify-center items-center'>
-          <LoaderEllipsis />
+        <div>
+          <SearchHr loading={true} />
+          <div className='flex justify-center items-center'>
+            <LoaderEllipsis />
+          </div>
         </div>
       ) : bobinas.error ? (
-        <div className='flex justify-center items-center'>
+        <div className='flex flex-col justify-center items-center'>
           <p className='text-red-600 font-bold text-lg text-center'>{`Error: ${bobinas.error}`}</p>
+          <ButtonGeneric
+            handleClick={() => {
+              setPagination(pagination + 1);
+            }}
+            color='green'
+          >
+            Recargar
+          </ButtonGeneric>
         </div>
       ) : (
         <div>
-          <div>
-            <label className='flex' htmlFor=''>
-              Cliente:
-              <select className='ml-1 max-w-sm' name='' id='' />
-            </label>
-            <div className='flex mt-2 mb-4'>
-              <label className='flex' htmlFor=''>
-                Orden:
-                <input type='number' name='' id='' />
-              </label>
-              Fecha
-              <label className='flex' htmlFor=''>
-                Alta:
-                <input type='number' name='' id='' />
-              </label>
-              <label className='flex' htmlFor=''>
-                Hasta:
-                <input type='number' name='' id='' />
-              </label>
-              <button type='button'>Buscar</button>
-            </div>
-          </div>
+          <SearchHr />
           <table className='table-fixed text-sm'>
             <thead>
               <tr>
@@ -130,6 +131,29 @@ const TableState = () => {
               })}
             </tbody>
           </table>
+          <div className='flex justify-end mt-2'>
+            {pagination > 0 && (
+              <ButtonGeneric
+                className='mr-2'
+                type='button'
+                handleClick={() => {
+                  setPagination(pagination - 1);
+                }}
+                color='red'
+              >
+                Anterior
+              </ButtonGeneric>
+            )}
+            <ButtonGeneric
+              type='button'
+              handleClick={() => {
+                setPagination(pagination + 1);
+              }}
+              color='blue'
+            >
+              Siguiente
+            </ButtonGeneric>
+          </div>
         </div>
       )}
     </>

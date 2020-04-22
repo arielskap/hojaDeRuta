@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import ColorBox from './ColorBox';
-import Modal from '../Modal';
-import cross from '../../assets/static/cross.svg';
-import minus from '../../assets/static/minus.svg';
-import { animateCSS } from '../../funciones';
+import Modal from '../../Modal';
+import cross from '../../../assets/static/cross.svg';
+import minus from '../../../assets/static/minus.svg';
+import { animateCSS } from '../../../funciones';
 
 const ColoresSelectBody = ({ id, hasParte }) => {
   const [colorBox, setColorBox] = useState([<ColorBox parte={id} id={1} key={0} />]);

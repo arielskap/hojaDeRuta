@@ -1,4 +1,4 @@
-import React from 'react';
+import React from './node_modules/react';
 import '../../assets/styles/Loaders/loaderColors.css';
 
 const LoaderColors = () => {

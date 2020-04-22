@@ -1,8 +1,8 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import FormContainer from '../components/Login/FormContainer';
-import NuevaPass from '../components/Login/NuevaPass';
-import ForgetPass from '../components/Login/ForgetPassContainer';
+import FormContainer from '../components/login/FormContainer';
+import NuevaPass from '../components/login/NuevaPass';
+import ForgetPass from '../components/login/ForgetPassContainer';
 import Logo from '../assets/static/logo_chozas2.png';
 import '../assets/styles/login.css';
 

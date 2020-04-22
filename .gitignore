@@ -103,4 +103,6 @@ yarn-error.log
 # Build
 dist/
 
+modules-manifest.json
+
 *.zip

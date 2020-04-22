@@ -8,7 +8,7 @@ import BodyMultiset from './BodyMultiset';
 const body = (nameHr, setUrl) => {
   let retorno;
   if (nameHr === 'bobinas') {
-    //setUrl('bobina/create');
+    localStorage.setItem('url', 'bobina/create');
     retorno = <BodyBobinas />;
   } else if (nameHr === 'continuos') {
     retorno = <BodyContinuos />;
@@ -21,9 +21,9 @@ const body = (nameHr, setUrl) => {
   return retorno;
 };
 
-const BodyHr = ({ setUrl }) => {
+const BodyHr = () => {
   const { nameHr } = useParams();
-  const bodyTag = useRef(body(nameHr, setUrl));
+  const bodyTag = useRef(body(nameHr));
 
   return bodyTag.current;
 };

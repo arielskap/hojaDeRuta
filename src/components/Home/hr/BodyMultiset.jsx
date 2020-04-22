@@ -1,6 +1,6 @@
 import React from 'react';
-import Acondicionamiento from '../components/Home/Acondicionamiento';
-import ColoresSelectAddLess from '../components/Home/ColoresSelectAddLess';
+import Acondicionamiento from './Acondicionamiento';
+import ColoresSelectAddLess from './ColoresSelectAddLess';
 
 const BodyMultiset = () => {
   return (

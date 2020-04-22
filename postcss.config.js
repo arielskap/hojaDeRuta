@@ -15,8 +15,8 @@ module.exports = {
     postcssPresetEnv({
       stage: 0,
     }),
-    autoprefixer,
     tailwindcss,
+    autoprefixer,
     cssMqpacker,
   ],
 };

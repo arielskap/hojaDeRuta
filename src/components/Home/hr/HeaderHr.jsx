@@ -1,23 +1,23 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { useParams } from 'react-router-dom';
-import '../../assets/styles/checkbox.css';
+import '../../../assets/styles/checkbox.css';
 
 const HeaderHr = () => {
   const { nameHr } = useParams();
-  const { vendedor, lista_empresas } = JSON.parse(localStorage.getItem('user'));
+  const user = useRef(JSON.parse(localStorage.getItem('user')));
   return (
     <div className='grid_parent grid grid-cols-16 border-2 border-title-hr rounded mb-2'>
       <div className='row-span-2 col-span-2'>
         <h2 className='text-center text-xl font-bold bg-gray-200 rounded p-1'>{nameHr.toLocaleUpperCase()}</h2>
         <label className='mt-2 flex items-center justify-center' htmlFor='seguridad'>
-          <input className='input_checkbox_square' type='checkbox' name='seguridad' id='seguridad' required />
+          <input className='input_checkbox_square' type='checkbox' name='seguridad' id='seguridad' />
           <p className='ml-1 font-bold'>SEGURIDAD</p>
         </label>
       </div>
       <div className='col-span-6 p-2'>
         <label className='inputTextNumber' htmlFor='nombreVendedor'>
           NOMBRE DEL VENDEDOR:
-          <input className='cursor-not-allowed' readOnly defaultValue={`${vendedor.nombre} ${vendedor.apellido}`} type='text' name='nombreVendedor' id='nombreVendedor' required />
+          <input className='cursor-not-allowed' readOnly defaultValue={`${user.current.vendedor.nombre} ${user.current.vendedor.apellido}`} type='text' name='nombreVendedor' id='nombreVendedor' required />
         </label>
       </div>
       <div className='col-span-2 grid grid-cols-2 gap-1'>
@@ -54,7 +54,7 @@ const HeaderHr = () => {
         <label className='inputTextNumber w-full' htmlFor='headerHrCodigoEmpresa'>
           Vendido a:
           <select name='headerHrCodigoEmpresa' id='headerHrCodigoEmpresa'>
-            {lista_empresas.map((empresa) => {
+            {user.current.lista_empresas.map((empresa) => {
               const { id, razonSocial, codigoEmpresa, activo } = empresa;
               if (!activo) {
                 return null;

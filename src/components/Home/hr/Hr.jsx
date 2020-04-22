@@ -1,29 +1,32 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import HeaderHr from './HeaderHr';
+import BodyHr from './BodyHr';
+import FooterHr from './FooterHr';
+import SubmitHr from './SubmitHr';
+import BgDark from '../../BgDark';
+import LoaderEllipsis from '../../loaders/LoaderEllipsis';
 
-const SubmitHr = ({ url }) => {
-  const header = useRef({});
-  const body = useRef({});
-  const footer = useRef({});
-  const hoja = useRef({});
-  const colores = useRef({});
+const Hr = () => {
+  const isMounted = useRef(true);
   const controller = useRef(new AbortController());
-  const [errors, setErrors] = useState({
-    title: '',
-    list: [],
+  const [sendData, setSendData] = useState({
+    response: { title: '',
+      list: [],
+    },
+    loading: false,
+    error: '',
   });
 
-  const errores = (response) => {
-    console.log(response);
-    setErrors({
-      title: response.message,
-      list: response.body,
-    });
-  };
+  const getData = () => {
+    const data = {
+      header: {},
+      body: {},
+      footer: {},
+      hoja: {},
+      colores: {},
+    };
 
-  const handleSubmit = () => {
-    const { signal } = controller.current;
-
-    header.current = {
+    data.header = {
       codigo_empresa: parseInt(document.querySelector('#headerHrCodigoEmpresa').value, 10),
       seguridad: document.querySelector('#seguridad').checked,
       pba: document.querySelector('#pbaImpresa').checked,
@@ -53,14 +56,14 @@ const SubmitHr = ({ url }) => {
       }
     }
     const bodyBobinaSiString = document.querySelector('#bodyBobinaSi').checked ? 'Si' : 'No';
-    body.current = {
+    data.body = {
       sentido_bobina: inputChecked,
       pleca: bodyBobinaSiString,
       acondicionamiento: document.querySelector('#bodyBobinasStreech').checked ? document.querySelector('#bodyBobinasStreech').value : document.querySelector('#bodyBobinasCarton').checked ? document.querySelector('#bodyBobinasCarton').value : document.querySelector('#bodyBobinasPallet').checked && document.querySelector('#bodyBobinasPallet').value,
       descripcion: document.querySelector('#bodyBobinasTextarea').value,
     };
 
-    footer.current = {
+    data.footer = {
       numerar: document.querySelector('#numerarSi').checked,
       sistema_numerado: parseInt(document.querySelector('#sistemaNumerado').value, 10),
       digitos: parseInt(document.querySelector('#digitos').value, 10),
@@ -77,7 +80,7 @@ const SubmitHr = ({ url }) => {
       terminacion: document.querySelector('#textareaTerminacion').value,
     };
 
-    hoja.current = {
+    data.hoja = {
       tipo_trascripcion: document.querySelector('#coloresSelectBody__total') ? document.querySelector('#coloresSelectBody__total').checked ? document.querySelector('#coloresSelectBody__total').value : document.querySelector('#coloresSelectBody__parcial') : 'No tiene',
       parte: document.querySelector('#coloresSelectBody__parte') ? parseInt(document.querySelector('#coloresSelectBody__parte').value, 10) : 1,
       tipo_papel: document.querySelector('#coloresSelectBody__tipoPapel').value,
@@ -88,20 +91,28 @@ const SubmitHr = ({ url }) => {
       perforacion_archivo: document.querySelector('#coloresSelectBody__perfoArchivo').checked,
     };
 
-    colores.current = {
+    data.colores = {
       id_front: 1,
       frente_dorso: document.querySelector('#F11').checked ? 'F' : 'D',
       tipo_color: document.querySelector('#colorBox__select11').value,
     };
+    return data;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const { signal } = controller.current;
+    setSendData({ ...sendData, loading: true });
+    const data = getData();
 
     const headers = { method: 'POST',
       signal,
       body: JSON.stringify({
-        obj_cabecera: header.current,
-        obj_bobina: body.current,
-        obj_pie: footer.current,
-        obj_hoja: hoja.current,
-        obj_colores: colores.current,
+        obj_cabecera: data.header,
+        obj_bobina: data.body,
+        obj_pie: data.footer,
+        obj_hoja: data.hoja,
+        obj_colores: data.colores,
       }),
       headers: {
         'authorization': localStorage.getItem('authorization'),
@@ -110,47 +121,61 @@ const SubmitHr = ({ url }) => {
       credentials: 'same-origin',
     };
 
-    fetch(`http://www.dynamicdoc.com.ar/hoja_de_ruta/${url}`, headers)
+    fetch(`http://www.dynamicdoc.com.ar/hoja_de_ruta/${localStorage.getItem('url')}`, headers)
       .then((response) => {
-        return response.json();
+        if (isMounted.current) {
+          return response.json();
+        }
       })
       .catch((error) => {
-        console.log(error);
+        if (isMounted.current) {
+          console.log(`error: ${error}`);
+          setSendData({
+            ...sendData,
+            loading: false,
+            error,
+          });
+          return false;
+        }
       })
       .then((response) => {
-        errores(response);
+        if (response) {
+          console.log(response);
+          setSendData({
+            ...sendData,
+            response: {
+              title: response.message,
+              list: response.body,
+            },
+            loading: false,
+            error: '',
+          });
+        }
       });
   };
 
   useEffect(() => {
     return () => {
+      isMounted.current = false;
       controller.current.abort();
     };
   }, []);
 
   return (
-    <div className='my-4 grid grid-cols-2 gap-4'>
-      <div className='p-2 border border-title-hr rounded'>
-        <h4 className='text-center font-bold text-lg'>{errors.title || 'Lista de errores'}</h4>
-        <ul>
-          {errors.list.map((error, index) => {
-            const { propiedad, errores } = error;
-            return (
-              <li key={index}>
-                <span className='font-bold'>{`${propiedad}: `}</span>
-                {errores.map((error) => `${error}, `)}
-              </li>
-            );
-          })}
-        </ul>
-      </div>
-      <div>
-        <button onClick={handleSubmit} type='button' className='bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded'>
-          Enviar HR
-        </button>
-      </div>
-    </div>
+    <>
+      <form onSubmit={handleSubmit} className='mx-4'>
+        <HeaderHr />
+        <BodyHr />
+        <FooterHr />
+        <SubmitHr response={sendData.response} errorData={sendData.error} />
+      </form>
+      <BgDark show={sendData.loading}>
+        <div className='bg-white rounded p-1'>
+          <LoaderEllipsis />
+        </div>
+      </BgDark>
+    </>
   );
 };
 
-export default SubmitHr;
+export default Hr;

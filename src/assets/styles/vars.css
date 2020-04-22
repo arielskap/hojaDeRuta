@@ -10,6 +10,10 @@
   background-color: rgba(0, 0, 0, 0.8);
 }
 
+.bg-black-transparent-5 {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
 .text-xxs {
   font-size: 0.625rem;
 }
