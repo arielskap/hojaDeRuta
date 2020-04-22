@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import '../assets/styles/bodyBobinas.css';
 import '../assets/styles/checkbox.css';
 import paper from '../assets/static/paper.svg';
-import ColoresSelect from '../components/ColoresSelect';
+import ColoresSelect from '../components/Home/ColoresSelect';
 
 const BodyBobinas = () => {
   const bobinas = useRef([{

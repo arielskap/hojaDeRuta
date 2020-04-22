@@ -1,9 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import ExitModal from './ExitModal';
 import Form from './Form';
-import '../assets/styles/form.css';
-import ver from '../assets/static/ver.svg';
+import '../../assets/styles/form.css';
+import ver from '../../assets/static/ver.svg';
 import Input from './Input';
 
 const FormDetails = ({ information, modalIsOpen, handles }) => {

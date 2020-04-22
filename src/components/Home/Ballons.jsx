@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import '../assets/styles/ballons.css';
+import '../../assets/styles/ballons.css';
 
 const Ballons = ({ isHappy }) => {
   if (!isHappy) {

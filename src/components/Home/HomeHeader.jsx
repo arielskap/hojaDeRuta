@@ -1,10 +1,11 @@
 import React from 'react';
-import logoChozas from '../assets/static/logo_chozas2.png';
-import imgPerfil from '../assets/static/user.svg';
-import '../assets/styles/homeHeader.css';
+import logoChozas from '../../assets/static/logo_chozas2.png';
+import imgPerfil from '../../assets/static/user.svg';
+import '../../assets/styles/homeHeader.css';
 
 const HomeHeader = () => {
-  const { vendedor } = JSON.parse(localStorage.getItem('user'));
+  const user = JSON.parse(localStorage.getItem('user'));
+  const { vendedor } = user || { vendedor: { nombre: undefined, apellido: undefined } };
   const { nombre, apellido } = vendedor;
   return (
     <div className='Home__header flex items-center justify-around text-white'>
@@ -20,7 +21,7 @@ const HomeHeader = () => {
           <img className='rounded-full object-contain h-full w-full' src={imgPerfil} alt='Perfil' />
         </div>
         <div className='ml-4 text-xl'>
-          <p>{`${nombre} ${apellido}`}</p>
+          <p>{`${nombre || null} ${apellido || null}`}</p>
         </div>
       </div>
     </div>

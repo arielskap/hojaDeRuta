@@ -1,5 +1,5 @@
 import React from 'react';
-import '../assets/styles/LoaderColors.css';
+import '../../assets/styles/Loaders/loaderColors.css';
 
 const LoaderColors = () => {
   return (

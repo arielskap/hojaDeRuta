@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import Modal from './Modal';
+import Modal from '../Modal';
 import ColoresSelect from './ColoresSelect';
-import animateCSS from '../funciones';
-import cross from '../assets/static/cross.svg';
-import minus from '../assets/static/minus.svg';
+import { animateCSS } from '../../funciones';
+import cross from '../../assets/static/cross.svg';
+import minus from '../../assets/static/minus.svg';
 
 const ColoresSelectAddLess = () => {
   const [coloresSelect, setColoresSelect] = useState([<ColoresSelect id={1} hasParte={true} key={0} />]);

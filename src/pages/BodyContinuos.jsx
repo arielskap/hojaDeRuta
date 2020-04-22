@@ -1,7 +1,7 @@
 import React from 'react';
-import DesgloseCremallera from '../components/DesgloseCremallera';
-import Acondicionamiento from '../components/Acondicionamiento';
-import ColoresSelectAddLess from '../components/ColoresSelectAddLess';
+import DesgloseCremallera from '../components/Home/DesgloseCremallera';
+import Acondicionamiento from '../components/Home/Acondicionamiento';
+import ColoresSelectAddLess from '../components/Home/ColoresSelectAddLess';
 
 const BodyContinuos = () => {
   return (

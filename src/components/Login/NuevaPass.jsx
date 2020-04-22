@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Form from './Form';
 import BackToLogin from './BackToLogin';
-import '../assets/styles/form.css';
+import '../../assets/styles/form.css';
 import Input from './Input';
-import Modal from './Modal';
-import animateCSS from '../funciones';
+import Modal from '../Modal';
+import { animateCSS } from '../../funciones';
 
 const NuevaPass = () => {
   const [information, setInformation] = useState('');

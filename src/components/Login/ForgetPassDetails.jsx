@@ -4,9 +4,9 @@ import Form from './Form';
 import BackToLogin from './BackToLogin';
 import InformationModal from './InformationModal';
 import Input from './Input';
-import '../assets/styles/forgetPass.css';
+import '../../assets/styles/forgetPass.css';
 //import '../assets/styles/tippy.css';
-import info from '../assets/static/info.svg';
+import info from '../../assets/static/info.svg';
 
 /*onChange={handleChange}*/
 const ForgetPassDetails = ({ title, step, hasSupervisor, buttonText, handles, modalIsOpen, tippyVisible }) => {

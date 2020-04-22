@@ -3,9 +3,9 @@ import { useHistory } from 'react-router-dom';
 //import { ipcRenderer } from 'electron';
 //import { login } from '../renderer-process';
 import FormDetails from './FormDetails';
-import animateCSS from '../funciones';
-import ver from '../assets/static/ver.svg';
-import noVer from '../assets/static/noVer.svg';
+import { animateCSS } from '../../funciones';
+import ver from '../../assets/static/ver.svg';
+import noVer from '../../assets/static/noVer.svg';
 
 const FormContainer = () => {
   const [information, setInformation] = useState('');

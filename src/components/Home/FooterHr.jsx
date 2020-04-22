@@ -23,27 +23,27 @@ const FooterHr = () => {
             <label className='inputTextNumber text-xxs' htmlFor='sistemaNumerado'>
               SISTEMA DE NUMERADO
               <select name='sistemaNumerado' id='sistemaNumerado'>
-                <option value='1'>IMPACTO</option>
-                <option value='2'>LASER</option>
-                <option value='3'>INKJET</option>
-                <option value='4'>MATRICIAL</option>
+                <option value={1}>IMPACTO</option>
+                <option value={2}>LASER</option>
+                <option value={3}>INKJET</option>
+                <option value={4}>MATRICIAL</option>
               </select>
             </label>
           </div>
           <div className='col-span-2 p-2'>
             <label className='inputTextNumber' htmlFor='digitos'>
               DIGITOS
-              <input type='number' name='digitos' id='digitos' />
+              <input type='number' name='digitos' id='digitos' min='1' max='10' />
             </label>
           </div>
           <div className='col-span-2 p-2'>
             <label className='inputTextNumber' htmlFor='tintaColor'>
               TINTA/COLOR NUMERADO
               <select name='tintaColor' id='tintaColor'>
-                <option value='1'>NEGRO</option>
-                <option value='2'>ROJO</option>
-                <option value='3'>SANGRANTE</option>
-                <option value='4'>PENETRANTE</option>
+                <option value='Neg'>NEGRO</option>
+                <option value='Roj'>ROJO</option>
+                <option value='San'>SANGRANTE</option>
+                <option value='Pen'>PENETRANTE</option>
               </select>
             </label>
           </div>
@@ -63,13 +63,13 @@ const FooterHr = () => {
           <div className='col-span-2 p-2'>
             <label className='inputTextNumber' htmlFor='prefijo'>
               PREFIJO/SERIE
-              <input type='text' name='prefijo' id='prefijo' />
+              <input type='text' name='prefijo' id='prefijo' maxLength={3} />
             </label>
           </div>
           <div className='col-span-2 p-2'>
             <label className='inputTextNumber' htmlFor='numeroInicial'>
               NUMERO INICIAL
-              <input type='number' name='numeroInicial' id='numeroInicial' />
+              <input type='number' name='numeroInicial' id='numeroInicial' min='1' max='10' />
             </label>
           </div>
           <div className='flex items-center justify-center relative'>
@@ -78,13 +78,13 @@ const FooterHr = () => {
           <div className='col-span-2 p-2'>
             <label className='inputTextNumber' htmlFor='prefijo2'>
               PREFIJO/SERIE
-              <input type='text' name='prefijo2' id='prefijo2' />
+              <input type='text' name='prefijo2' id='prefijo2' maxLength={3} />
             </label>
           </div>
           <div className='col-span-2 p-2'>
             <label className='inputTextNumber' htmlFor='numeroFinal'>
               NUMERO FINAL
-              <input type='number' name='numeroFinal' id='numeroFinal' />
+              <input type='number' name='numeroFinal' id='numeroFinal' min='1' max='10' />
             </label>
           </div>
           <div className='col-span-3 font-bold text-xxs p-2'>

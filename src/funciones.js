@@ -1,4 +1,5 @@
-const animateCSS = (element, animationName, callback) => {
+// eslint-disable-next-line import/prefer-default-export
+export const animateCSS = (element, animationName, callback) => {
   const node = document.querySelector(element);
   const animationNames = animationName.split(' ');
   node.classList.add('animated');
@@ -17,5 +18,3 @@ const animateCSS = (element, animationName, callback) => {
 
   node.addEventListener('animationend', handleAnimationEnd);
 };
-
-export default animateCSS;

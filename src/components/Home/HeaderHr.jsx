@@ -1,10 +1,10 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import '../assets/styles/checkbox.css';
+import '../../assets/styles/checkbox.css';
 
 const HeaderHr = () => {
   const { nameHr } = useParams();
-  const { lista_empresas } = JSON.parse(localStorage.getItem('user'));
+  const { vendedor, lista_empresas } = JSON.parse(localStorage.getItem('user'));
   return (
     <div className='grid_parent grid grid-cols-16 border-2 border-title-hr rounded mb-2'>
       <div className='row-span-2 col-span-2'>
@@ -17,7 +17,7 @@ const HeaderHr = () => {
       <div className='col-span-6 p-2'>
         <label className='inputTextNumber' htmlFor='nombreVendedor'>
           NOMBRE DEL VENDEDOR:
-          <input type='text' name='nombreVendedor' id='nombreVendedor' required />
+          <input className='cursor-not-allowed' readOnly defaultValue={`${vendedor.nombre} ${vendedor.apellido}`} type='text' name='nombreVendedor' id='nombreVendedor' required />
         </label>
       </div>
       <div className='col-span-2 grid grid-cols-2 gap-1'>
@@ -51,25 +51,28 @@ const HeaderHr = () => {
         </label>
       </div>
       <div className='col-span-5 p-2 flex'>
-        <select name='headerHrCodigoEmpresa' id='headerHrCodigoEmpresa'>
-          {lista_empresas.map((empresa) => {
-            const { id, razonSocial, codigoEmpresa, activo } = empresa;
-            if (!activo) {
-              return null;
-            }
-            return (
-              <option value={codigoEmpresa} key={id}>{`${codigoEmpresa}. ${razonSocial}`}</option>
-            );
-          })}
-        </select>
+        <label className='inputTextNumber w-full' htmlFor='headerHrCodigoEmpresa'>
+          Vendido a:
+          <select name='headerHrCodigoEmpresa' id='headerHrCodigoEmpresa'>
+            {lista_empresas.map((empresa) => {
+              const { id, razonSocial, codigoEmpresa, activo } = empresa;
+              if (!activo) {
+                return null;
+              }
+              return (
+                <option value={codigoEmpresa} key={id}>{`${codigoEmpresa}. ${razonSocial}`}</option>
+              );
+            })}
+          </select>
+        </label>
       </div>
       <div className='col-span-2 p-2'>
         <label className='inputTextNumber' htmlFor='materialEntregado'>
           MATERIAL ENTREGADO
           <select name='materialEntregado' id='materialEntregado' required>
-            <option value={0}>ARCHIVO POR EMAIL</option>
-            <option value={1}>CD / DVD</option>
-            <option value={2}>MUESTRA IMPRESA</option>
+            <option value={1}>ARCHIVO POR EMAIL</option>
+            <option value={2}>CD / DVD</option>
+            <option value={3}>MUESTRA IMPRESA</option>
           </select>
         </label>
       </div>
@@ -100,7 +103,7 @@ const HeaderHr = () => {
       <div className='col-span-2 p-2'>
         <label className='inputTextNumber' htmlFor='cantidad'>
           CANTIDAD
-          <input type='text' name='cantidad' id='cantidad' required />
+          <input type='number' name='cantidad' id='cantidad' required max={99} />
         </label>
       </div>
       <div className='col-span-5 p-2'>
@@ -130,11 +133,11 @@ const HeaderHr = () => {
       <div className='col-span-3 p-2'>
         <label className='inputTextNumber' htmlFor='modulo'>
           MÓDULO
-          <input type='text' name='modulo' id='modulo' required />
+          <input type='number' name='modulo' id='modulo' required max={10} />
         </label>
         <label className='inputTextNumber' htmlFor='version'>
           VERSIÓN
-          <input type='text' name='version' id='version' required />
+          <input type='number' name='version' id='version' required max={10} />
         </label>
       </div>
     </div>

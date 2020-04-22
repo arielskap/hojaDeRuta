@@ -1,6 +1,6 @@
 import React from 'react';
-import ColoresSelect from '../components/ColoresSelect';
-import Acondicionamiento from '../components/Acondicionamiento';
+import ColoresSelect from '../components/Home/ColoresSelect';
+import Acondicionamiento from '../components/Home/Acondicionamiento';
 
 const BodyContinuos = () => {
   return (

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import ColorBox from './ColorBox';
-import Modal from './Modal';
-import cross from '../assets/static/cross.svg';
-import minus from '../assets/static/minus.svg';
-import animateCSS from '../funciones';
+import Modal from '../Modal';
+import cross from '../../assets/static/cross.svg';
+import minus from '../../assets/static/minus.svg';
+import { animateCSS } from '../../funciones';
 
 const ColoresSelectBody = ({ id, hasParte }) => {
   const [colorBox, setColorBox] = useState([<ColorBox parte={id} id={1} key={0} />]);
@@ -61,40 +61,40 @@ const ColoresSelectBody = ({ id, hasParte }) => {
         <div className='col-span-12 grid grid-cols-12 text-xs'>
           {hasParte && (
             <div className='flex justify-center items-center'>
-              <p className='shadow border rounded py-1 px-2 text-gray-700 leading-tight bg-gray-400 font-bold text-sm'>{id}</p>
+              <input readOnly defaultValue={id} type='number' name='coloresSelectBody__parte' id='coloresSelectBody__parte' />
             </div>
           )}
           <div className={`${hasParte ? 'col-span-3' : 'col-span-4'} p-2`}>
-            <select name='' id=''>
-              <option value='1'>OBRA</option>
-              <option value='2'>QUIM. CF</option>
-              <option value='3'>QUIM. CB</option>
-              <option value='4'>QUIM. CFB</option>
-              <option value='5'>FLIG. RCH</option>
+            <select name='coloresSelectBody__tipoPapel' id='coloresSelectBody__tipoPapel'>
+              <option value='OBRA'>OBRA</option>
+              <option value='QUIM. CF'>QUIM. CF</option>
+              <option value='QUIM. CB'>QUIM. CB</option>
+              <option value='QUIM. CFB'>QUIM. CFB</option>
+              <option value='FLIG. RCH'>FLIG. RCH</option>
             </select>
           </div>
           <div className='col-span-1 p-2'>
-            <input type='text' />
+            <input name='coloresSelectBody__grs' id='coloresSelectBody__grs' type='text' />
           </div>
           <div className='col-span-4 p-2 grid grid-cols-5'>
             <div className='col-span-2'>
-              <input type='number' />
+              <input name='coloresSelectBody__medidaPrimera' id='coloresSelectBody__medidaPrimera' type='number' />
             </div>
             <p className='text-center mt-1 font-bold'>x</p>
             <div className='col-span-2'>
-              <input className='col-span-2' type='number' />
+              <input name='coloresSelectBody__medidaSegunda' id='coloresSelectBody__medidaSegunda' className='col-span-2' type='number' />
             </div>
           </div>
           <div className='col-span-2 p-2 grid grid-cols-2 gap-2'>
             <div>
-              <input type='text' />
+              <input name='coloresSelectBody__perfoPerper' id='coloresSelectBody__perfoPerper' type='number' min={1} max={15} />
             </div>
             <div>
-              <input type='text' />
+              <input name='coloresSelectBody__perfoParal' id='coloresSelectBody__perfoParal' type='number' min={1} max={15} />
             </div>
           </div>
           <div className='col-span-1 p-2'>
-            <input type='checkbox' />
+            <input name='coloresSelectBody__perfoArchivo' id='coloresSelectBody__perfoArchivo' type='checkbox' />
           </div>
         </div>
         { hasParte && (
@@ -102,11 +102,11 @@ const ColoresSelectBody = ({ id, hasParte }) => {
             <p>TRANSCRIPCION ENTRE COPIAS</p>
             <div className='flex justify-center flex-grow'>
               <label className='flex items-center ' htmlFor='coloresSelectBody__total'>
-                <input className='mr-1' type='checkbox' name='coloresSelectBody__total' id='coloresSelectBody__total' />
+                <input defaultValue='Total' className='mr-1' type='radio' name='coloresSelectBody__transcripcion' id='coloresSelectBody__total' />
                 TOTAL
               </label>
               <label className='flex items-center ml-2' htmlFor='coloresSelectBody__parcial'>
-                <input className='mr-1' type='checkbox' name='coloresSelectBody__parcial' id='coloresSelectBody__parcial' />
+                <input defaultValue='Parcial' className='mr-1' type='radio' name='coloresSelectBody__transcripcion' id='coloresSelectBody__parcial' />
                 PARCIAL
               </label>
             </div>

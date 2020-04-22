@@ -1,5 +1,6 @@
+/* eslint-disable no-use-before-define */
 import React, { useState, useEffect } from 'react';
-import animateCSS from '../funciones';
+import { animateCSS } from '../../funciones';
 import ForgetPassDetails from './ForgetPassDetails';
 //import { listSupervisor } from '../renderer-process';
 
