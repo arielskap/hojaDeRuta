@@ -7,15 +7,16 @@ const SubmitHr = ({ response, errorData }) => {
       <div className='p-2 border border-title-hr rounded'>
         <h4 className='text-center font-bold text-lg'>{`${errorData}` || response.title || 'Lista de errores'}</h4>
         <ul>
-          {response.list.map((error, index) => {
-            const { propiedad, errores } = error;
-            return (
-              <li key={index}>
-                <span className='font-bold'>{`${propiedad}: `}</span>
-                {errores.map((error) => `${error}, `)}
-              </li>
-            );
-          })}
+          {response.result === 'success' ? <li>{response.message}</li> :
+            response.list.map((error, index) => {
+              const { propiedad, errores } = error;
+              return (
+                <li key={index}>
+                  <span className='font-bold'>{`${propiedad}: `}</span>
+                  {errores ? errores.map((error) => `${error}, `) : `${error}, `}
+                </li>
+              );
+            })}
         </ul>
       </div>
       <div className='flex justify-center'>

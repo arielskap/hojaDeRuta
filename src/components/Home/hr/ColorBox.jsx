@@ -2,14 +2,14 @@ import React from 'react';
 
 const ColorBox = ({ id, parte }) => {
   return (
-    <div className={`box animated fadeIn faster box${id}${parte || '1'}`}>
+    <div className={`box animated fadeIn faster colorBox${parte || 1} box${id}${parte || '1'}`}>
       <div className='grid grid-cols-5'>
         <div>
-          <p className='bg-black text-white flex items-center justify-center'>{id}</p>
+          <p className={`bg-black text-white flex items-center justify-center parteId${id}${parte || '1'}`}>{id}</p>
         </div>
         <div className='col-span-2 pt-1'>
           <label className='flex items-center justify-center text-xs' htmlFor={`F${id}${parte || '1'}`}>
-            <input type='radio' name={`colorBox_letra${id}${parte || '1'}`} id={`F${id}${parte || '1'}`} />
+            <input type='radio' name={`colorBox_letra${id}${parte || '1'}`} id={`F${id}${parte || '1'}`} defaultChecked />
             <p className='ml-1'>F</p>
           </label>
         </div>

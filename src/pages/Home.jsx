@@ -11,7 +11,7 @@ const Home = () => {
     <div className='flex flex-col min-h-screen min-w-full animated fadeIn faster'>
       <HomeHeader />
       <div className='py-2 bg-white border-t-2 border-black flex-grow flex justify-center'>
-        <div className='container'>
+        <div className='container flex flex-col'>
           <Switch>
             <Route exact path='/hr'>
               <Inicio />

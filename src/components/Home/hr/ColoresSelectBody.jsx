@@ -6,9 +6,11 @@ import minus from '../../../assets/static/minus.svg';
 import { animateCSS } from '../../../funciones';
 
 const ColoresSelectBody = ({ id, hasParte }) => {
-  const [colorBox, setColorBox] = useState([<ColorBox parte={id} id={1} key={0} />]);
+  const [colorBox, setColorBox] = useState(JSON.parse(localStorage.getItem('hrData')) ? [].concat(JSON.parse(localStorage.getItem('hrData')).hoja.colores.map((color, index) => {
+    const idColor = color.id;
+    return <ColorBox parte={id} id={index + 1} key={idColor} />;
+  })) : [<ColorBox parte={id} id={1} key={0} />]);
   const [openModal, setOpenModal] = useState(false);
-
   const handleAddColorBox = () => {
     setColorBox(colorBox.concat(<ColorBox parte={id} id={colorBox.length + 1} key={colorBox.length} />));
   };
@@ -31,7 +33,7 @@ const ColoresSelectBody = ({ id, hasParte }) => {
 
   return (
     <>
-      <div className={`col-span-4 grid grid-cols-12 ColoresSelectBody${id || '1'}`}>
+      <div className={`col-span-4 grid grid-cols-12 ColoresSelectBody ColoresSelectBody${id || '1'}`}>
         <div className='col-span-12 grid grid-cols-12 border border-title-hr rounded text-xs text-center'>
           {hasParte && (
             <div>
@@ -61,11 +63,11 @@ const ColoresSelectBody = ({ id, hasParte }) => {
         <div className='col-span-12 grid grid-cols-12 text-xs'>
           {hasParte && (
             <div className='flex justify-center items-center'>
-              <input readOnly defaultValue={id} type='number' name='coloresSelectBody__parte' id='coloresSelectBody__parte' />
+              <input readOnly defaultValue={id} type='number' name='coloresSelectBody__parte' id={`coloresSelectBody__parte${id || '1'}`} />
             </div>
           )}
           <div className={`${hasParte ? 'col-span-3' : 'col-span-4'} p-2`}>
-            <select name='coloresSelectBody__tipoPapel' id='coloresSelectBody__tipoPapel'>
+            <select name='coloresSelectBody__tipoPapel' id={`coloresSelectBody__tipoPapel${id || '1'}`}>
               <option value='OBRA'>OBRA</option>
               <option value='QUIM. CF'>QUIM. CF</option>
               <option value='QUIM. CB'>QUIM. CB</option>
@@ -74,27 +76,27 @@ const ColoresSelectBody = ({ id, hasParte }) => {
             </select>
           </div>
           <div className='col-span-1 p-2'>
-            <input name='coloresSelectBody__grs' id='coloresSelectBody__grs' type='text' />
+            <input name='coloresSelectBody__grs' id={`coloresSelectBody__grs${id || '1'}`} type='text' />
           </div>
           <div className='col-span-4 p-2 grid grid-cols-5'>
             <div className='col-span-2'>
-              <input name='coloresSelectBody__medidaPrimera' id='coloresSelectBody__medidaPrimera' type='number' />
+              <input name='coloresSelectBody__medidaPrimera' id={`coloresSelectBody__medidaPrimera${id || '1'}`} type='number' />
             </div>
             <p className='text-center mt-1 font-bold'>x</p>
             <div className='col-span-2'>
-              <input name='coloresSelectBody__medidaSegunda' id='coloresSelectBody__medidaSegunda' className='col-span-2' type='number' />
+              <input name='coloresSelectBody__medidaSegunda' id={`coloresSelectBody__medidaSegunda${id || '1'}`} className='col-span-2' type='number' />
             </div>
           </div>
           <div className='col-span-2 p-2 grid grid-cols-2 gap-2'>
             <div>
-              <input name='coloresSelectBody__perfoPerper' id='coloresSelectBody__perfoPerper' type='number' min={1} max={15} />
+              <input name='coloresSelectBody__perfoPerper' id={`coloresSelectBody__perfoPerper${id || '1'}`} type='number' min={1} max={15} />
             </div>
             <div>
-              <input name='coloresSelectBody__perfoParal' id='coloresSelectBody__perfoParal' type='number' min={1} max={15} />
+              <input name='coloresSelectBody__perfoParal' id={`coloresSelectBody__perfoParal${id || '1'}`} type='number' min={1} max={15} />
             </div>
           </div>
           <div className='col-span-1 p-2'>
-            <input name='coloresSelectBody__perfoArchivo' id='coloresSelectBody__perfoArchivo' type='checkbox' />
+            <input name='coloresSelectBody__perfoArchivo' id={`coloresSelectBody__perfoArchivo${id || '1'}`} type='checkbox' />
           </div>
         </div>
         { hasParte && (
@@ -102,11 +104,11 @@ const ColoresSelectBody = ({ id, hasParte }) => {
             <p>TRANSCRIPCION ENTRE COPIAS</p>
             <div className='flex justify-center flex-grow'>
               <label className='flex items-center ' htmlFor='coloresSelectBody__total'>
-                <input defaultValue='Total' className='mr-1' type='radio' name='coloresSelectBody__transcripcion' id='coloresSelectBody__total' />
+                <input defaultValue='Total' className='mr-1' type='radio' name='coloresSelectBody__transcripcion' id={`coloresSelectBody__total${id || '1'}`} />
                 TOTAL
               </label>
               <label className='flex items-center ml-2' htmlFor='coloresSelectBody__parcial'>
-                <input defaultValue='Parcial' className='mr-1' type='radio' name='coloresSelectBody__transcripcion' id='coloresSelectBody__parcial' />
+                <input defaultValue='Parcial' className='mr-1' type='radio' name='coloresSelectBody__transcripcion' id={`coloresSelectBody__parcial${id || '1'}`} />
                 PARCIAL
               </label>
             </div>

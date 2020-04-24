@@ -1,17 +1,28 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useHistory, useRouteMatch } from 'react-router-dom';
 import LoaderEllipsis from '../loaders/LoaderEllipsis';
 import Td from './Td';
 import ButtonGeneric from '../ButtonGeneric';
 import SearchHr from './SearchHr';
 
 const TableState = () => {
+  const { url } = useRouteMatch();
+  const history = useHistory();
   const [pagination, setPagination] = useState(0);
   const [bobinas, setBobinas] = useState({
-    lista: [],
+    response: {
+      pages: 0,
+      list_bobinas: [],
+    },
     loading: false,
     error: '',
   });
   const isMounted = useRef(true);
+
+  const goToThisBobina = (index) => {
+    localStorage.setItem('hrData', JSON.stringify(bobinas.response.list_bobinas[index]));
+    history.push(`${url}/bobinas`);
+  };
 
   useEffect(() => {
     const controller = new AbortController();
@@ -42,7 +53,8 @@ const TableState = () => {
       })
       .then((response) => {
         if (response) {
-          setBobinas({ lista: response.body, loading: false, error: '' });
+          console.log(response);
+          setBobinas({ ...bobinas, response: response.body, loading: false, error: '' });
         }
       });
     return () => {
@@ -55,7 +67,7 @@ const TableState = () => {
     <>
       {bobinas.loading ? (
         <div>
-          <SearchHr loading={true} />
+          {/*<SearchHr loading={true} />*/}
           <div className='flex justify-center items-center'>
             <LoaderEllipsis />
           </div>
@@ -73,32 +85,31 @@ const TableState = () => {
           </ButtonGeneric>
         </div>
       ) : (
-        <div>
-          <SearchHr />
-          <table className='table-fixed text-sm'>
+        <div className='flex flex-col'>
+          {/*<SearchHr />*/}
+          <table className='text-xs block overflow-y-scroll h-64 overflow-x-hidden border-2 rounded flex-grow'>
             <thead>
               <tr>
-                <th className='px-2 py-1'>HR</th>
-                <th className='px-2 py-1'>Fecha</th>
-                <th className='px-2 py-1'>Tipo</th>
-                <th className='px-2 py-1'>Orden</th>
-                <th className='w-2/12  px-2 py-1'>Producto</th>
-                <th className='w-2/12  px-2 py-1'>Cliente</th>
-                <th className='w-2/12  px-2 py-1'>Orden de Compra</th>
-                <th className='px-2 py-1'>Cant.Form.</th>
-                <th className='px-2 py-1'>Entrega</th>
+                <th className='px-1 py-1 sticky top-0 bg-blue-200'>HR</th>
+                <th className='px-1 py-1 sticky top-0 bg-blue-200'>Fecha</th>
+                <th className='px-1 py-1 sticky top-0 bg-blue-200'>Tipo</th>
+                <th className='px-1 py-1 sticky top-0 bg-blue-200'>Orden</th>
+                <th className='w-2/12  px-1 py-1 sticky top-0 bg-blue-200'>Producto</th>
+                <th className='w-2/12  px-1 py-1 sticky top-0 bg-blue-200'>Cliente</th>
+                <th className='w-2/12  px-1 py-1 sticky top-0 bg-blue-200'>Orden de Compra</th>
+                <th className='px-1 py-1 sticky top-0 bg-blue-200'>Cant. Form.</th>
+                <th className='px-1 py-1 sticky top-0 bg-blue-200'>Entrega</th>
               </tr>
             </thead>
             <tbody>
-              {bobinas.lista.map((bobina) => {
-                const { id, fechaCreacion, descripcion, sentidoBobina, cabecera } = bobina;
-                const { tipo, ordenActual, ordenCompra, cantidad, fechaEntrega } = cabecera;
+              {bobinas.response.list_bobinas.map((bobina, index) => {
+                const { id, fechaCreacion, descripcion, cabecera: { tipo, ordenActual, ordenCompra, cantidad, fechaEntrega }, empresa: { razonSocial } } = bobina;
                 let parseFechaCreacion = new Date(fechaCreacion);
                 let parseFechaEntrega = new Date(fechaEntrega);
                 parseFechaCreacion = `${parseFechaCreacion.getUTCMonth() + 1}/${parseFechaCreacion.getUTCDate()}/${parseFechaCreacion.getUTCFullYear()}`;
                 parseFechaEntrega = `${parseFechaEntrega.getUTCMonth() + 1}/${parseFechaEntrega.getUTCDate()}/${parseFechaEntrega.getUTCFullYear()}`;
                 return (
-                  <tr key={id}>
+                  <tr key={id} onClick={() => { goToThisBobina(index); }} className='hover:bg-blue-400 cursor-pointer'>
                     <Td>
                       {id}
                     </Td>
@@ -115,7 +126,7 @@ const TableState = () => {
                       {descripcion}
                     </Td>
                     <Td>
-                      {sentidoBobina}
+                      {razonSocial}
                     </Td>
                     <Td>
                       {ordenCompra}
@@ -144,15 +155,17 @@ const TableState = () => {
                 Anterior
               </ButtonGeneric>
             )}
-            <ButtonGeneric
-              type='button'
-              handleClick={() => {
-                setPagination(pagination + 1);
-              }}
-              color='blue'
-            >
-              Siguiente
-            </ButtonGeneric>
+            { /*bobinas.response.pages >= pagination && (
+              <ButtonGeneric
+                type='button'
+                handleClick={() => {
+                  setPagination(pagination + 1);
+                }}
+                color='blue'
+              >
+                Siguiente
+              </ButtonGeneric>
+              )*/}
           </div>
         </div>
       )}

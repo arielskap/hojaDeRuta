@@ -23,11 +23,11 @@ const HeaderHr = () => {
       <div className='col-span-2 grid grid-cols-2 gap-1'>
         <label className='inputCheckbox' htmlFor='sinPba'>
           SIN PBA
-          <input type='radio' name='pba' id='sinPba' />
+          <input type='radio' name='pba' id='sinPba' defaultChecked />
         </label>
         <label className='inputCheckbox' htmlFor='pbaImpresa'>
           PBA IMPRESA
-          <input type='radio' name='pba' id='pbaImpresa' defaultChecked />
+          <input type='radio' name='pba' id='pbaImpresa' />
         </label>
       </div>
       <div className='col-span-3 grid grid-cols-3 gap-1'>
