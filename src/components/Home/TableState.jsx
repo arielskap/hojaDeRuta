@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useHistory, useRouteMatch } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import LoaderEllipsis from '../loaders/LoaderEllipsis';
 import Td from './Td';
 import ButtonGeneric from '../ButtonGeneric';
 import SearchHr from './SearchHr';
 
 const TableState = () => {
-  const { url } = useRouteMatch();
   const history = useHistory();
   const [pagination, setPagination] = useState(0);
+  const [realoadPagination, setRealoadPagination] = useState(0);
   const [bobinas, setBobinas] = useState({
     response: {
       pages: 0,
@@ -21,7 +21,7 @@ const TableState = () => {
 
   const goToThisBobina = (index) => {
     localStorage.setItem('hrData', JSON.stringify(bobinas.response.list_bobinas[index]));
-    history.push(`${url}/bobinas`);
+    history.push(`/hr/type/bobinas?hr=${bobinas.response.list_bobinas[index].id}`);
   };
 
   useEffect(() => {
@@ -58,16 +58,21 @@ const TableState = () => {
         }
       });
     return () => {
-      isMounted.current = false;
       controller.abort();
     };
-  }, [pagination]);
+  }, [pagination, realoadPagination]);
+
+  useEffect(() => {
+    return () => {
+      isMounted.current = false;
+    };
+  }, []);
 
   return (
     <>
       {bobinas.loading ? (
         <div>
-          {/*<SearchHr loading={true} />*/}
+          <SearchHr loading={true} />
           <div className='flex justify-center items-center'>
             <LoaderEllipsis />
           </div>
@@ -77,7 +82,7 @@ const TableState = () => {
           <p className='text-red-600 font-bold text-lg text-center'>{`Error: ${bobinas.error}`}</p>
           <ButtonGeneric
             handleClick={() => {
-              setPagination(pagination + 1);
+              setRealoadPagination(realoadPagination + 1);
             }}
             color='green'
           >
@@ -86,8 +91,8 @@ const TableState = () => {
         </div>
       ) : (
         <div className='flex flex-col'>
-          {/*<SearchHr />*/}
-          <table className='text-xs block overflow-y-scroll h-64 overflow-x-hidden border-2 rounded flex-grow'>
+          <SearchHr />
+          <table className='text-xs block overflow-y-auto h-64 overflow-x-hidden border-2 rounded flex-grow animated fadeIn faster'>
             <thead>
               <tr>
                 <th className='px-1 py-1 sticky top-0 bg-blue-200'>HR</th>
@@ -155,7 +160,7 @@ const TableState = () => {
                 Anterior
               </ButtonGeneric>
             )}
-            { /*bobinas.response.pages >= pagination && (
+            { bobinas.response.pages >= pagination && (
               <ButtonGeneric
                 type='button'
                 handleClick={() => {
@@ -165,7 +170,7 @@ const TableState = () => {
               >
                 Siguiente
               </ButtonGeneric>
-              )*/}
+            )}
           </div>
         </div>
       )}

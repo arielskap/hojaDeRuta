@@ -18,7 +18,7 @@ const BodyContinuos = () => {
             <div className='col-span-5 flex border-r border-title-hr px-2'>
               <div>
                 <label className='flex' htmlFor=''>
-                  <input className='mr-1' type='checkbox' name='' id='' />
+                  <input className='mr-1' type='radio' name='facilRadio' id='' defaultChecked />
                   <img src={null} alt='Facil Mail' />
                 </label>
                 <p>MÉTODO DE CERRADO</p>
@@ -26,33 +26,33 @@ const BodyContinuos = () => {
               <label className='flex flex-col' htmlFor=''>
                 <img src={null} alt='v' />
                 <div className='flex items-center'>
-                  <input className='mr-1' type='checkbox' name='' id='' />
+                  <input className='mr-1' type='radio' name='radio_facilMail' id='' />
                   <p>v</p>
                 </div>
               </label>
               <label className='flex flex-col' htmlFor=''>
                 <img src={null} alt='c' />
                 <div className='flex items-center'>
-                  <input className='mr-1' type='checkbox' name='' id='' />
+                  <input className='mr-1' type='radio' name='radio_facilMail' id='' />
                   <p>c</p>
                 </div>
               </label>
               <label className='flex flex-col' htmlFor=''>
                 <img src={null} alt='z' />
                 <div className='flex items-center'>
-                  <input className='mr-1' type='checkbox' name='' id='' />
+                  <input className='mr-1' type='radio' name='radio_facilMail' id='' />
                   <p>z</p>
                 </div>
               </label>
               <label className='flex items-end' htmlFor=''>
-                <input className='mr-1' type='checkbox' name='' id='' />
+                <input className='mr-1' type='radio' name='radio_facilMail' id='' />
                 OTRO
               </label>
             </div>
             <div className='col-span-3 flex border-r border-title-hr px-2'>
               <div className='flex flex-col justify-between pr-4'>
                 <label className='flex' htmlFor=''>
-                  <input className='mr-1' type='checkbox' name='' id='' />
+                  <input className='mr-1' type='radio' name='facilRadio' id='' />
                   <img src={null} alt='Facil Card' />
                 </label>
                 <label htmlFor=''>
@@ -62,28 +62,28 @@ const BodyContinuos = () => {
               </div>
               <div className='flex flex-col'>
                 <label htmlFor=''>
-                  <input className='mr-1' type='checkbox' name='' id='' />
+                  <input className='mr-1' type='radio' name='radio_facilCard' id='' />
                   TARJETA STANDARD
                 </label>
                 <label htmlFor=''>
-                  <input className='mr-1' type='checkbox' name='' id='' />
+                  <input className='mr-1' type='radio' name='radio_facilCard' id='' />
                   SÓLO PARCHE DORSO
                 </label>
                 <label htmlFor=''>
-                  <input className='mr-1' type='checkbox' name='' id='' />
+                  <input className='mr-1' type='radio' name='radio_facilCard' id='' />
                   MARIPOSA
                 </label>
               </div>
             </div>
             <div className='col-span-2 border-r border-title-hr px-2'>
               <label className='flex' htmlFor=''>
-                <input className='mr-1' type='checkbox' name='' id='' />
+                <input className='mr-1' type='radio' name='facilRadio' id='' />
                 <img src={null} alt='Facil Card' />
               </label>
             </div>
             <div className='col-span-2 px-2'>
               <label className='flex' htmlFor=''>
-                <input className='mr-1' type='checkbox' name='' id='' />
+                <input className='mr-1' type='radio' name='facilRadio' id='' />
                 <img src={null} alt='Facil Security' />
               </label>
               <label htmlFor=''>

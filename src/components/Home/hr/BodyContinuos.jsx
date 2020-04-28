@@ -18,20 +18,20 @@ const BodyContinuos = () => {
             <div className='p-2 bg-gray-600 rounded mb-2'>
               <h3 className='text-center text-sm mb-1'>APERTURA SOBRE</h3>
               <div className='flex justify-around'>
-                <label className='flex items-center' htmlFor=''>
-                  <input className='mr-1' type='checkbox' name='' id='' />
+                <label className='flex items-center' htmlFor='bodyContinuos_izq'>
+                  <input className='mr-1' type='radio' name='bodyContinuos_aperturaSobre' id='bodyContinuos_izq' defaultChecked />
                   IZQ.
                 </label>
-                <label className='flex items-center' htmlFor=''>
-                  <input className='mr-1' type='checkbox' name='' id='' />
+                <label className='flex items-center' htmlFor='bodyContinuos_der'>
+                  <input className='mr-1' type='radio' name='bodyContinuos_aperturaSobre' id='bodyContinuos_der' />
                   DER.
                 </label>
-                <label className='flex items-center' htmlFor=''>
-                  <input className='mr-1' type='checkbox' name='' id='' />
+                <label className='flex items-center' htmlFor='bodyContinuos_cab'>
+                  <input className='mr-1' type='radio' name='bodyContinuos_aperturaSobre' id='bodyContinuos_cab' />
                   CAB.
                 </label>
-                <label className='flex items-center' htmlFor=''>
-                  <input className='mr-1' type='checkbox' name='' id='' />
+                <label className='flex items-center' htmlFor='bodyContinuos_pie'>
+                  <input className='mr-1' type='radio' name='bodyContinuos_aperturaSobre' id='bodyContinuos_pie' />
                   PIE
                 </label>
               </div>

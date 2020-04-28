@@ -45,6 +45,23 @@ const hrData = (isHr) => {
     }
   }
 
+  const footerNumerar = () => ({
+    numerar: document.querySelector('#numerarSi'),
+    sistema_numerado: document.querySelector('#sistemaNumerado'),
+    digitos: document.querySelector('#digitos'),
+    tinta_color: document.querySelector('#tintaColor'),
+    codigo_barra: document.querySelector('#bidimensional'),
+    primer_prefijo: document.querySelector('#prefijo'),
+    numero_inicial: document.querySelector('#numeroInicial'),
+    segundo_prefijo: document.querySelector('#prefijo2'),
+    numero_final: document.querySelector('#numeroFinal'),
+    digito_chequeo: document.querySelector('#chequeoSi'),
+    descripcion: document.querySelector('#textareaNumeracion'),
+    diseño: document.querySelector('#textareaDiseño'),
+    impresion: document.querySelector('#textareaImpresion'),
+    terminacion: document.querySelector('#textareaTerminacion'),
+  });
+
   const hr = {
     header: {
       codigo_empresa: document.querySelector('#headerHrCodigoEmpresa'),
@@ -80,22 +97,7 @@ const hrData = (isHr) => {
       },
       descripcion: document.querySelector('#bodyBobinasTextarea'),
     },
-    footer: {
-      numerar: document.querySelector('#numerarSi'),
-      sistema_numerado: document.querySelector('#sistemaNumerado'),
-      digitos: document.querySelector('#digitos'),
-      tinta_color: document.querySelector('#tintaColor'),
-      codigo_barra: document.querySelector('#bidimensional'),
-      primer_prefijo: document.querySelector('#prefijo'),
-      numero_inicial: document.querySelector('#numeroInicial'),
-      segundo_prefijo: document.querySelector('#prefijo2'),
-      numero_final: document.querySelector('#numeroFinal'),
-      digito_chequeo: document.querySelector('#chequeoSi'),
-      descripcion: document.querySelector('#textareaNumeracion'),
-      diseño: document.querySelector('#textareaDiseño'),
-      impresion: document.querySelector('#textareaImpresion'),
-      terminacion: document.querySelector('#textareaTerminacion'),
-    },
+    footer: footerNumerar(),
   };
 
   return {
@@ -212,9 +214,10 @@ const hrData = (isHr) => {
       data.colores = getHojaColors().coloresArray;
       return data;
     },
-    setData: (data) => {
+    setData: (data, setEsNumerado) => {
       const { cabecera, pie } = data;
-      const { header, body, body: { hoja }, footer } = hr;
+      const { header, body, body: { hoja } } = hr;
+      let { footer } = hr;
       let parseFechaEntrega = new Date(cabecera.fechaEntrega);
       const month = parseFechaEntrega.getUTCMonth() + 1;
       const day = parseFechaEntrega.getUTCDate();
@@ -274,20 +277,30 @@ const hrData = (isHr) => {
         }
       }
 
-      footer.codigo_barra.value = pie.codigoBarra;
-      footer.descripcion.value = pie.descripcion;
-      footer.digito_chequeo.checked = pie.digitoChequeo === 1;
-      footer.digitos.value = pie.digitos;
-      footer.diseño.value = pie.diseño;
-      footer.impresion.value = pie.impresion;
       footer.numerar.checked = pie.numerar === 1;
-      footer.numero_final.value = pie.numeroFinal;
-      footer.numero_inicial.value = pie.numeroInicial;
-      footer.primer_prefijo.value = pie.primerPrefijo;
-      footer.segundo_prefijo.value = pie.segundoPrefijo;
-      footer.sistema_numerado.value = pie.sistemaNumerado;
-      footer.terminacion.value = pie.terminacion;
-      footer.tinta_color.value = pie.tintaColor;
+      if (pie.numerar === 1) {
+        new Promise((resolve, reject) => {
+          setEsNumerado(true);
+          resolve(1);
+        }).then(() => {
+          footer = footerNumerar();
+          footer.codigo_barra.value = pie.codigoBarra;
+          footer.descripcion.value = pie.descripcion;
+          footer.digito_chequeo.checked = pie.digitoChequeo === 1;
+          footer.digitos.value = pie.digitos;
+          footer.diseño.value = pie.diseño;
+          footer.impresion.value = pie.impresion;
+          footer.numero_final.value = pie.numeroFinal;
+          footer.numero_inicial.value = pie.numeroInicial;
+          footer.primer_prefijo.value = pie.primerPrefijo;
+          footer.segundo_prefijo.value = pie.segundoPrefijo;
+          footer.sistema_numerado.value = pie.sistemaNumerado;
+          footer.terminacion.value = pie.terminacion;
+          footer.tinta_color.value = pie.tintaColor;
+        });
+      } else {
+        setEsNumerado(false);
+      }
     },
   };
 };

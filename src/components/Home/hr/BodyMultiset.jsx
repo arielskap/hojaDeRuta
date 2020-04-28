@@ -10,7 +10,7 @@ const BodyMultiset = () => {
         <div className='col-span-10 grid grid-cols-3'>
           <div className='flex flex-col border-r-2 border-title-hr px-2 py-1'>
             <label className='py-1 flex justify-center items-center bg-gray-600 rounded mt-2 mx-1 font-bold' htmlFor=''>
-              <input className='mr-1' type='checkbox' name='' id='' />
+              <input className='mr-1' type='radio' name='multiset_radio' id='' defaultChecked />
               TALONARIOS
             </label>
             <div className='grid grid-cols-2 flex-grow'>
@@ -37,7 +37,7 @@ const BodyMultiset = () => {
           </div>
           <div className='border-r-2 border-title-hr px-2 py-1 flex flex-col'>
             <label className='py-1 flex justify-center items-center bg-gray-600 rounded mt-2 mx-1 font-bold' htmlFor=''>
-              <input className='mr-1' type='checkbox' name='' id='' />
+              <input className='mr-1' type='radio' name='multiset_radio' id='' />
               BLOCKS
             </label>
             <div className='grid grid-cols-2 flex-grow'>
@@ -60,7 +60,7 @@ const BodyMultiset = () => {
                 </label>
                 <label className='flex' htmlFor=''>
                   JUEGOS POR BLOCK
-                  <input className='ml-1' type='checkbox' name='' id='' />
+                  <input className='ml-1' type='number' name='' id='' />
                 </label>
                 <div />
               </div>
@@ -68,8 +68,8 @@ const BodyMultiset = () => {
           </div>
           <div className='border-r-2 border-title-hr px-2 py-1'>
             <label className='py-1 flex justify-center items-center bg-gray-600 rounded mt-2 mx-1 font-bold' htmlFor=''>
-              <input className='mr-1' type='checkbox' name='' id='' />
-              BLOCKS
+              <input className='mr-1' type='radio' name='multiset_radio' id='' />
+              MULTISET
             </label>
             <div className='grid grid-cols-3 flex-grow'>
               <div>
@@ -90,7 +90,7 @@ const BodyMultiset = () => {
                 <hr />
                 <div className='flex'>
                   <label className='flex' htmlFor=''>
-                    <input className='mr-1' type='checkbox' name='' id='' />
+                    <input className='mr-1' type='radio' name='multiset_radio_type' id='' />
                     SNAP
                   </label>
                   <label className='flex' htmlFor=''>
@@ -98,7 +98,7 @@ const BodyMultiset = () => {
                     CM
                   </label>
                   <label className='flex' htmlFor=''>
-                    <input className='ml-1' type='checkbox' name='' id='' />
+                    <input className='ml-1' type='radio' name='multiset_radio_type' id='' />
                     JUEGOS SUELTOS
                   </label>
                 </div>

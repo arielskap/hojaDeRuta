@@ -6,7 +6,7 @@ const ColoresSelect = ({ id, hasParte }) => {
   return (
     <>
       {hasParte ? (
-        <div className='grid grid-cols-12 col-gap-2 border-b-2 mt-2 border-title-hr animated fadeIn faster'>
+        <div className='grid grid-cols-12 border-b-2 mt-1 border-title-hr animated fadeIn faster'>
           <ColoresSelectBody id={id} hasParte={hasParte} />
         </div>
       ) :

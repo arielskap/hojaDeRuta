@@ -5,7 +5,7 @@ import BodyContinuos from './BodyContinuos';
 import BodyHojas from './BodyHojas';
 import BodyMultiset from './BodyMultiset';
 
-const body = (nameHr, setUrl) => {
+const body = (nameHr) => {
   let retorno;
   if (nameHr === 'bobinas') {
     localStorage.setItem('url', 'bobina/create');

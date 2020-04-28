@@ -6,13 +6,13 @@ const DesgloseCremallera = ({ lado }) => {
       <div>
         <p>{`DESGLOSE CREMALLERA ${lado}A`}</p>
         <div className='py-2'>
-          <label htmlFor=''>
-            <input className='mr-1' type='checkbox' name='' id='' defaultChecked />
+          <label htmlFor={`desgloseCremallera_no${lado}`}>
+            <input className='mr-1' type='radio' name={`desgloseCremallera${lado}`} id={`desgloseCremallera_no${lado}`} defaultChecked />
             NO
           </label>
           <div className='flex mt-2'>
-            <label className='flex items-center' htmlFor=''>
-              <input className='mr-1' type='checkbox' name='' id='' />
+            <label className='flex items-center' htmlFor={`desgloseCremallera_si${lado}`}>
+              <input className='mr-1' type='radio' name={`desgloseCremallera${lado}`} id={`desgloseCremallera_si${lado}`} />
               SI
             </label>
             <label className='flex ml-2 items-center' htmlFor=''>
@@ -24,12 +24,12 @@ const DesgloseCremallera = ({ lado }) => {
         <div>
           <p>{`CRIMP-LOCK ${lado}O`}</p>
           <div className='flex justify-around'>
-            <label className='flex items-center' htmlFor=''>
-              <input className='mr-1' type='checkbox' name='' id='' />
+            <label className='flex items-center' htmlFor={`crimpLock_si${lado}`}>
+              <input className='mr-1' type='radio' name={`crimpLock${lado}`} id={`crimpLock_si${lado}`} />
               SI
             </label>
-            <label className='flex items-center' htmlFor=''>
-              <input className='mr-1' type='checkbox' name='' id='' defaultChecked />
+            <label className='flex items-center' htmlFor={`crimpLock_no${lado}`}>
+              <input className='mr-1' type='radio' name={`crimpLock${lado}`} id={`crimpLock_no${lado}`} defaultChecked />
               NO
             </label>
           </div>

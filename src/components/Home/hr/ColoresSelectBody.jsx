@@ -33,40 +33,41 @@ const ColoresSelectBody = ({ id, hasParte }) => {
 
   return (
     <>
-      <div className={`col-span-4 grid grid-cols-12 ColoresSelectBody ColoresSelectBody${id || '1'}`}>
-        <div className='col-span-12 grid grid-cols-12 border border-title-hr rounded text-xs text-center'>
-          {hasParte && (
+      <div className={`col-span-4 grid grid-cols-12 text-xxs ColoresSelectBody ColoresSelectBody${id || '1'}`}>
+        { (id === 1 || id === undefined) && (
+          <div className='col-span-12 grid grid-cols-12 border border-title-hr rounded text-center'>
+            {hasParte && (
+              <div>
+                <h3>PARTE</h3>
+              </div>
+            )}
+            <div className={hasParte ? 'col-span-3' : 'col-span-4'}>
+              <h3>TIPO DE PAPEL</h3>
+            </div>
             <div>
-              <h3>PARTE</h3>
+              <h3>GRS.</h3>
             </div>
-          )}
-          <div className={hasParte ? 'col-span-3' : 'col-span-4'}>
-            <h3>TIPO DE PAPEL</h3>
-          </div>
-          <div>
-            <h3>GRS.</h3>
-          </div>
-          <div className='col-span-4'>
-            <h3 className='font-bold'>MEDIDA</h3>
-          </div>
-          <div className='col-span-2'>
-            <h3 className='text-xxs'>PERFORACIONES</h3>
-            <div className='grid grid-cols-2'>
-              <h4 className='text-xxs'>PERPEND.</h4>
-              <h4 className='text-xxs'>PARAL:</h4>
+            <div className='col-span-4'>
+              <h3 className='font-bold'>MEDIDA</h3>
+            </div>
+            <div className='col-span-2'>
+              <div className='grid grid-cols-2 text-xxxs'>
+                <h4>PERPEND.</h4>
+                <h4>PARAL:</h4>
+              </div>
+            </div>
+            <div className='col-span-1 text-xxxs'>
+              <h3>ARCHIVO</h3>
             </div>
           </div>
-          <div className='col-span-1 text-xxs'>
-            <h3>PERF. ARCHIVO</h3>
-          </div>
-        </div>
-        <div className='col-span-12 grid grid-cols-12 text-xs'>
+        )}
+        <div className='col-span-12 grid grid-cols-12 space-x-1'>
           {hasParte && (
-            <div className='flex justify-center items-center'>
+            <div className='flex justify-center'>
               <input readOnly defaultValue={id} type='number' name='coloresSelectBody__parte' id={`coloresSelectBody__parte${id || '1'}`} />
             </div>
           )}
-          <div className={`${hasParte ? 'col-span-3' : 'col-span-4'} p-2`}>
+          <div className={`${hasParte ? 'col-span-3' : 'col-span-4'}`}>
             <select name='coloresSelectBody__tipoPapel' id={`coloresSelectBody__tipoPapel${id || '1'}`}>
               <option value='OBRA'>OBRA</option>
               <option value='QUIM. CF'>QUIM. CF</option>
@@ -75,10 +76,10 @@ const ColoresSelectBody = ({ id, hasParte }) => {
               <option value='FLIG. RCH'>FLIG. RCH</option>
             </select>
           </div>
-          <div className='col-span-1 p-2'>
+          <div className='col-span-1'>
             <input name='coloresSelectBody__grs' id={`coloresSelectBody__grs${id || '1'}`} type='text' />
           </div>
-          <div className='col-span-4 p-2 grid grid-cols-5'>
+          <div className='col-span-4 grid grid-cols-5'>
             <div className='col-span-2'>
               <input name='coloresSelectBody__medidaPrimera' id={`coloresSelectBody__medidaPrimera${id || '1'}`} type='number' />
             </div>
@@ -87,7 +88,7 @@ const ColoresSelectBody = ({ id, hasParte }) => {
               <input name='coloresSelectBody__medidaSegunda' id={`coloresSelectBody__medidaSegunda${id || '1'}`} className='col-span-2' type='number' />
             </div>
           </div>
-          <div className='col-span-2 p-2 grid grid-cols-2 gap-2'>
+          <div className='col-span-2 grid grid-cols-2 col-gap-2'>
             <div>
               <input name='coloresSelectBody__perfoPerper' id={`coloresSelectBody__perfoPerper${id || '1'}`} type='number' min={1} max={15} />
             </div>
@@ -95,30 +96,32 @@ const ColoresSelectBody = ({ id, hasParte }) => {
               <input name='coloresSelectBody__perfoParal' id={`coloresSelectBody__perfoParal${id || '1'}`} type='number' min={1} max={15} />
             </div>
           </div>
-          <div className='col-span-1 p-2'>
+          <div className='col-span-1'>
             <input name='coloresSelectBody__perfoArchivo' id={`coloresSelectBody__perfoArchivo${id || '1'}`} type='checkbox' />
           </div>
         </div>
         { hasParte && (
-          <div className='col-span-12 text-xs flex rounded p-2 bg-gray-200 mb-2'>
+          <div className='col-span-12 flex rounded bg-gray-200 mb-2'>
             <p>TRANSCRIPCION ENTRE COPIAS</p>
             <div className='flex justify-center flex-grow'>
               <label className='flex items-center ' htmlFor='coloresSelectBody__total'>
-                <input defaultValue='Total' className='mr-1' type='radio' name='coloresSelectBody__transcripcion' id={`coloresSelectBody__total${id || '1'}`} />
+                <input defaultValue='Total' className='mr-1' type='radio' name={`coloresSelectBody__transcripcion${id || '1'}`} id={`coloresSelectBody__total${id || '1'}`} defaultChecked />
                 TOTAL
               </label>
               <label className='flex items-center ml-2' htmlFor='coloresSelectBody__parcial'>
-                <input defaultValue='Parcial' className='mr-1' type='radio' name='coloresSelectBody__transcripcion' id={`coloresSelectBody__parcial${id || '1'}`} />
+                <input defaultValue='Parcial' className='mr-1' type='radio' name={`coloresSelectBody__transcripcion${id || '1'}`} id={`coloresSelectBody__parcial${id || '1'}`} />
                 PARCIAL
               </label>
             </div>
           </div>
         )}
       </div>
-      <div className={`col-span-8 grid grid-cols-10 gap-2 ${hasParte && 'row-span-2'}`}>
-        <div className='bg-black col-span-10 rounded'>
-          <h3 className='text-white font-bold text-xs h-full flex items-center justify-center'>COLORES</h3>
-        </div>
+      <div className='col-span-8 grid grid-cols-10 gap-1 text-xxs'>
+        { (id === 1 || id === undefined) && (
+          <div className='bg-black col-span-10 rounded'>
+            <h3 className='text-white font-bold h-full flex items-center justify-center'>COLORES</h3>
+          </div>
+        )}
         <div className='col-span-10 grid grid-cols-10 boxes'>
           {colorBox}
           <div className='flex justify-around'>

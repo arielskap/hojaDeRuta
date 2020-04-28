@@ -1,4 +1,4 @@
-const generateBoxes = () => {
+export const generateBoxes = () => {
   const MAX_BOXES = 10;
   const newObject = [];
   for (let i = 1; i <= MAX_BOXES; i++) {
@@ -8,5 +8,3 @@ const generateBoxes = () => {
   }
   return newObject;
 };
-
-export default generateBoxes;

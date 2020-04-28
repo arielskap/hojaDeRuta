@@ -79,7 +79,7 @@ const FormContainer = () => {
       headers: {
         'Content-Type': 'application/json',
       },
-      credentials: 'same-origin',
+      credentials: 'include',
     };
 
     fetch('http://www.dynamicdoc.com.ar/hoja_de_ruta/login', header)

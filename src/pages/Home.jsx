@@ -1,12 +1,11 @@
 import React from 'react';
-import { Switch, Route, useRouteMatch } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import HomeHeader from '../components/home/HomeHeader';
 import Inicio from '../components/home/Inicio';
 import Hr from '../components/home/hr/Hr';
+import Configuracion from './Configuracion';
 
 const Home = () => {
-  const { path } = useRouteMatch();
-
   return (
     <div className='flex flex-col min-h-screen min-w-full animated fadeIn faster'>
       <HomeHeader />
@@ -16,8 +15,11 @@ const Home = () => {
             <Route exact path='/hr'>
               <Inicio />
             </Route>
-            <Route path={`${path}/:nameHr`}>
+            <Route path='/hr/type/:nameHr'>
               <Hr />
+            </Route>
+            <Route path='/hr/configuracion'>
+              <Configuracion />
             </Route>
           </Switch>
         </div>
