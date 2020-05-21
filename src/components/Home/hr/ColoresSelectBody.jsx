@@ -68,7 +68,8 @@ const ColoresSelectBody = ({ id, hasParte }) => {
             </div>
           )}
           <div className={`${hasParte ? 'col-span-3' : 'col-span-4'}`}>
-            <select name='coloresSelectBody__tipoPapel' id={`coloresSelectBody__tipoPapel${id || '1'}`}>
+            <select name='coloresSelectBody__tipoPapel' id={`coloresSelectBody__tipoPapel${id || '1'}`} required>
+              <option value=''>---</option>
               <option value='OBRA'>OBRA</option>
               <option value='QUIM. CF'>QUIM. CF</option>
               <option value='QUIM. CB'>QUIM. CB</option>
@@ -81,11 +82,11 @@ const ColoresSelectBody = ({ id, hasParte }) => {
           </div>
           <div className='col-span-4 grid grid-cols-5'>
             <div className='col-span-2'>
-              <input name='coloresSelectBody__medidaPrimera' id={`coloresSelectBody__medidaPrimera${id || '1'}`} type='number' />
+              <input name='coloresSelectBody__medidaPrimera' id={`coloresSelectBody__medidaPrimera${id || '1'}`} type='text' required />
             </div>
             <p className='text-center mt-1 font-bold'>x</p>
             <div className='col-span-2'>
-              <input name='coloresSelectBody__medidaSegunda' id={`coloresSelectBody__medidaSegunda${id || '1'}`} className='col-span-2' type='number' />
+              <input name='coloresSelectBody__medidaSegunda' id={`coloresSelectBody__medidaSegunda${id || '1'}`} type='text' required />
             </div>
           </div>
           <div className='col-span-2 grid grid-cols-2 col-gap-2'>
@@ -122,7 +123,7 @@ const ColoresSelectBody = ({ id, hasParte }) => {
             <h3 className='text-white font-bold h-full flex items-center justify-center'>COLORES</h3>
           </div>
         )}
-        <div className='col-span-10 grid grid-cols-10 boxes'>
+        <div className='col-span-10 grid grid-cols-12 boxes'>
           {colorBox}
           <div className='flex justify-around'>
             {colorBox.length > 1 && (
@@ -132,11 +133,14 @@ const ColoresSelectBody = ({ id, hasParte }) => {
                 </button>
               </div>
             )}
-            <div className='flex justify-center items-center'>
-              <button onClick={handleAddColorBox} className='w-8 h-8 p-2 border border-black rounded-full' type='button'>
-                <img className='object-contain transform rotate-45' src={cross} alt='Agregar color' />
-              </button>
-            </div>
+            { colorBox.length < 12 &&
+              (
+                <div className='flex justify-center items-center'>
+                  <button onClick={handleAddColorBox} className='w-8 h-8 p-2 border border-black rounded-full' type='button'>
+                    <img className='object-contain transform rotate-45' src={cross} alt='Agregar color' />
+                  </button>
+                </div>
+              )}
           </div>
         </div>
       </div>

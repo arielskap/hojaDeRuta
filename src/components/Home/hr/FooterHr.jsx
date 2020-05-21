@@ -24,7 +24,7 @@ const FooterHr = ({ esNumerado, setEsNumerado }) => {
               <div className='col-span-2 p-2'>
                 <label className='inputTextNumber text-xxs' htmlFor='sistemaNumerado'>
                   SISTEMA DE NUMERADO
-                  <select name='sistemaNumerado' id='sistemaNumerado'>
+                  <select name='sistemaNumerado' id='sistemaNumerado' required>
                     <option value={1}>IMPACTO</option>
                     <option value={2}>LASER</option>
                     <option value={3}>INKJET</option>
@@ -35,7 +35,7 @@ const FooterHr = ({ esNumerado, setEsNumerado }) => {
               <div className='col-span-2 p-2'>
                 <label className='inputTextNumber' htmlFor='digitos'>
                   DIGITOS
-                  <input type='number' name='digitos' id='digitos' min='1' max='10' />
+                  <input type='number' name='digitos' id='digitos' min='1' max='10' required />
                 </label>
               </div>
               <div className='col-span-2 p-2'>
@@ -71,7 +71,7 @@ const FooterHr = ({ esNumerado, setEsNumerado }) => {
               <div className='col-span-2 p-2'>
                 <label className='inputTextNumber' htmlFor='numeroInicial'>
                   NUMERO INICIAL
-                  <input type='number' name='numeroInicial' id='numeroInicial' min='1' max='10' />
+                  <input type='number' name='numeroInicial' id='numeroInicial' min='1' max='10' required />
                 </label>
               </div>
               <div className='flex items-center justify-center relative'>
@@ -103,7 +103,7 @@ const FooterHr = ({ esNumerado, setEsNumerado }) => {
                 </div>
               </div>
               <div className='col-span-12 p-2'>
-                <textarea className='resize-none w-full h-full' name='textareaNumeracion' id='textareaNumeracion' cols='30' rows='3' />
+                <textarea className='resize-none w-full h-full' name='textareaNumeracion' id='textareaNumeracion' cols='30' rows='3' required />
               </div>
             </>
           )}
@@ -113,6 +113,7 @@ const FooterHr = ({ esNumerado, setEsNumerado }) => {
         <div className='border-b border-title-hr'>
           <h3 className='text-center font-bold'>DISEÑO</h3>
         </div>
+        <input className='text-xxxs mt-2 mx-2' type='file' name='footer_disenoFile' id='footer_disenoFile' />
         <div className='flex-grow p-2'>
           <textarea className='resize-none w-full h-full' name='textareaDiseño' id='textareaDiseño' cols='30' rows='3' />
         </div>

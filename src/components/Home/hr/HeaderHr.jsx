@@ -20,7 +20,7 @@ const HeaderHr = () => {
           <input className='cursor-not-allowed' readOnly defaultValue={`${user.current.vendedor.nombre} ${user.current.vendedor.apellido}`} type='text' name='nombreVendedor' id='nombreVendedor' required />
         </label>
       </div>
-      <div className='col-span-2 grid grid-cols-2 gap-1'>
+      <div className='col-span-2 grid grid-cols-3 gap-1'>
         <label className='inputCheckbox' htmlFor='sinPba'>
           SIN PBA
           <input type='radio' name='pba' id='sinPba' defaultChecked />
@@ -28,6 +28,10 @@ const HeaderHr = () => {
         <label className='inputCheckbox' htmlFor='pbaImpresa'>
           PBA IMPRESA
           <input type='radio' name='pba' id='pbaImpresa' />
+        </label>
+        <label className='inputCheckbox' htmlFor='pbe'>
+          PBE
+          <input type='radio' name='pba' id='pbe' />
         </label>
       </div>
       <div className='col-span-3 grid grid-cols-3 gap-1'>
@@ -47,7 +51,7 @@ const HeaderHr = () => {
       <div className='col-span-3 p-2'>
         <label className='inputTextNumber' htmlFor='ordenAnterior'>
           NRO. ORDEN ANTERIOR
-          <input type='number' name='ordenAnterior' id='ordenAnterior' required />
+          <input type='number' name='ordenAnterior' id='ordenAnterior' />
         </label>
       </div>
       <div className='col-span-5 p-2 flex'>
@@ -69,35 +73,35 @@ const HeaderHr = () => {
       <div className='col-span-2 p-2'>
         <label className='inputTextNumber' htmlFor='materialEntregado'>
           MATERIAL ENTREGADO
-          <select name='materialEntregado' id='materialEntregado' required>
+          <select name='materialEntregado' id='materialEntregado'>
+            <option value=''>---</option>
             <option value={1}>ARCHIVO POR EMAIL</option>
-            <option value={2}>CD / DVD</option>
-            <option value={3}>MUESTRA IMPRESA</option>
+            <option value={2}>MUESTRA IMPRESA</option>
           </select>
         </label>
       </div>
       <div className='col-span-2 p-2'>
         <label className='inputTextNumber' htmlFor='precostoNro'>
           PRECOSTO Nro.
-          <input type='number' name='precostoNro' id='precostoNro' required />
+          <input type='number' name='precostoNro' id='precostoNro' />
         </label>
       </div>
       <div className='col-span-2 p-2'>
         <label className='inputTextNumber' htmlFor='nroOc'>
           NRO. O.C.
-          <input type='number' name='nroOc' id='nroOc' required />
+          <input type='number' name='nroOc' id='nroOc' />
         </label>
       </div>
       <div className='col-span-3 p-2'>
         <label className='inputTextNumber' htmlFor='orden'>
           NÚMERO DE ORDEN
-          <input type='number' name='orden' id='orden' required />
+          <input readOnly className='cursor-not-allowed' type='number' name='orden' id='orden' />
         </label>
       </div>
       <div className='col-span-2 p-2'>
         <label className='inputTextNumber' htmlFor='formula'>
           FORMULA
-          <input type='text' name='formula' id='formula' required />
+          <input type='text' name='formula' id='formula' />
         </label>
       </div>
       <div className='col-span-2 p-2'>
@@ -133,11 +137,11 @@ const HeaderHr = () => {
       <div className='col-span-3 p-2'>
         <label className='inputTextNumber' htmlFor='modulo'>
           MÓDULO
-          <input type='number' name='modulo' id='modulo' required max={10} />
+          <input type='number' name='modulo' id='modulo' max={10} />
         </label>
         <label className='inputTextNumber' htmlFor='version'>
           VERSIÓN
-          <input type='number' name='version' id='version' required max={10} />
+          <input type='number' name='version' id='version' max={10} />
         </label>
       </div>
     </div>

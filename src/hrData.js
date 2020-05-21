@@ -66,7 +66,11 @@ const hrData = (isHr) => {
     header: {
       codigo_empresa: document.querySelector('#headerHrCodigoEmpresa'),
       seguridad: document.querySelector('#seguridad'),
-      pba: document.querySelector('#pbaImpresa'),
+      pba: {
+        sinPba: document.querySelector('#sinPba'),
+        pba: document.querySelector('#pbaImpresa'),
+        pbe: document.querySelector('#pbe'),
+      },
       type: {
         nuevo: document.querySelector('#nuevo'),
         conCambios: document.querySelector('#conCambios'),
@@ -115,7 +119,7 @@ const hrData = (isHr) => {
       data.header = {
         codigo_empresa: parseInt(header.codigo_empresa.value, 10),
         seguridad: header.seguridad.checked,
-        pba: header.pba.checked,
+        //pba: header.pba.checked, VEeeer con abbuliño
         type: header.type.nuevo.checked ? header.type.nuevo.value : header.type.conCambios.checked ? header.type.conCambios.value : header.type.repExacta.checked && header.type.repExacta.value,
         orden_anterior: parseInt(header.orden_anterior.value, 10),
         material_entregado: parseInt(header.material_entregado.value, 10),
@@ -234,7 +238,7 @@ const hrData = (isHr) => {
       header.orden_actual.value = cabecera.ordenActual;
       header.orden_anterior.value = cabecera.ordenAnterior;
       header.orden_compra.value = cabecera.ordenCompra;
-      header.pba.checked = cabecera.pba === 1;
+      //header.pba.checked = cabecera.pba === 1; Ver con abbuliño
       header.pie_maquina.checked = cabecera.pieMaquina === 1;
       header.precosto.value = cabecera.precosto;
       header.seguridad.value = cabecera.seguridad;
